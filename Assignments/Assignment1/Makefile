@@ -1,4 +1,4 @@
-all: wi
+all: wicps
 
 wicps: walkIn.o List.o Patient.o
 	g++ -Wall -o wi walkIn.o List.o Patient.o
