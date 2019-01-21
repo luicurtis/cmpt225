@@ -132,7 +132,7 @@ int main()
 
             else
             {
-                cout << "Patient with care card: " << inputCC << "is in the system!" << endl;
+                cout << "Patient with care card: " << inputCC << " is in the system!" << endl;
             }
             
             printList(patients);
@@ -256,6 +256,8 @@ int main()
 
     } // do - while
     while(end == false);
+
+    delete patients;
 
     cout << "Program closed." <<endl;
 
