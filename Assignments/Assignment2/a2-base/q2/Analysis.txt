@@ -1,0 +1,12 @@
+Running Time Analysis:
+
+int push(int x):
+- The implementation of push, pushes the topmost element to the tail of the list
+- Given we have a head and tail pointer for the linked list we can insert quickly to the tail
+- For every insert it can happen in O(1) as we do not need to traverse the list
+
+int pop():
+- Since the list is a singly linked list with two heads (head and tail) we cannot "relink" tail in O(1)
+- Every time we want to pop the "top" element which is stored at the tail pointer, we need to traverse the whole stack
+- Traversing the whole stack gives a time complexity of O(n)
+- If we do not traverse the stack and keep a previous pointer, we will have a memory leak and break links in the stack
