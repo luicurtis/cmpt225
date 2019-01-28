@@ -49,14 +49,11 @@ List::List(const List& lst)
 	// head = lst.head; //shallow copy - you need to fix this!
 	Node* cur = lst.head;
 
-	while (cur->next != NULL)
+	while (cur != NULL)
 	{
 		add(cur->data);
 		cur = cur->next;
 	}
-
-	// Add the last element
-	//add(cur->data);
 }
 
 /* The destructor is responsible for deleting any memory that was dynamically
