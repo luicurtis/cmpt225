@@ -47,7 +47,6 @@ List::List(const List& lst)
 {
 	elementCount = lst.elementCount;
 	// head = lst.head; //shallow copy - you need to fix this!
-
 	Node* cur = lst.head;
 
 	while (cur->next != NULL)
@@ -57,7 +56,7 @@ List::List(const List& lst)
 	}
 
 	// Add the last element
-	add(cur->data);
+	//add(cur->data);
 }
 
 /* The destructor is responsible for deleting any memory that was dynamically
