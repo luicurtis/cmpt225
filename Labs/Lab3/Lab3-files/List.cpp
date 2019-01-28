@@ -47,6 +47,7 @@ List::List(const List& lst)
 {
 	elementCount = lst.elementCount;
 	// head = lst.head; //shallow copy - you need to fix this!
+	head = NULL;
 	Node* cur = lst.head;
 
 	while (cur != NULL)
