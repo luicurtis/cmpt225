@@ -69,7 +69,7 @@ List::~List()
 {
 	Node* current = head;
 
-	while (current->next != NULL)
+	while (current != NULL)
 	{
 		Node* next = current->next;
         delete current;
