@@ -118,9 +118,7 @@ Token performOp(Token val1, Token val2, Token op)
             result.val = val1.val / val2.val;
             break;
     }
-
-    cout << endl << result << endl;
-
+    
     return result;
 
 } // performOp()
