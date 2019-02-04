@@ -92,13 +92,15 @@ void Queue::dequeue()
     //than the initial size
     double fullness = 1.0 * elementCount / capacity;
 
-    cout << "ELEMENT COUNT " << elementCount << endl;
-    cout << "CAPACITY " << capacity << endl;
-    cout << "FULLNESS: " << fullness << endl;
     if (fullness < QUARTER_FULL && ((capacity / 2) >= INITIAL_SIZE))
     {
         // Create new array that is half the original size
         int * newArray = new int[capacity / 2];
+
+        if (newArray == NULL)
+        {
+            cout << " RUH ROH ";
+        }
         
         // Copy elements of old array into newArray
         int j = 0;
@@ -135,20 +137,15 @@ void Queue::dequeue()
 //  Pre:  Queue not empty
 int Queue::peek() const 
 {
-   
-    // for (int i = 0; i < elementCount; i ++)
-    //     {
-    //         cout << elements[i] << endl;
-    //     }
-    //     cout << endl;
-
     return elements[frontindex];
+
 } // top
 
 // Desc:  Returns true if and only if queue empty (O(1))
 bool Queue::isEmpty() const 
 {
     return elementCount == 0;
+
 } // isempty
 
 
