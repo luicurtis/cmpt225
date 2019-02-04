@@ -98,11 +98,6 @@ void Queue::dequeue()
         int halfCap = capacity/2;
         int * newArray = new int[halfCap];
 
-        if (newArray == NULL)
-        {
-            cout << " RUH ROH ";
-        }
-        
         // Copy elements of old array into newArray
         int j = 0;
 
@@ -110,9 +105,13 @@ void Queue::dequeue()
         {
             newArray[j] = elements[i];
             j++;
+            if (j == elementCount)
+            {
+                break;
+            }
         }
         // Copy elements of old array into newArray
-        if (frontindex != 0)
+        if (frontindex != 0 && j < elementCount)
         {
             for (int i = 0; i < frontindex; i++)
             {
