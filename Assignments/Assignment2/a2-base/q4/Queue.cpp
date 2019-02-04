@@ -95,7 +95,8 @@ void Queue::dequeue()
     if (fullness < QUARTER_FULL && ((capacity / 2) >= INITIAL_SIZE))
     {
         // Create new array that is half the original size
-        int * newArray = new int[capacity / 2];
+        int halfCap = capacity/2;
+        int * newArray = new int[halfCap];
 
         if (newArray == NULL)
         {
