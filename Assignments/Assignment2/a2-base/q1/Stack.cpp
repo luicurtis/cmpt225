@@ -4,7 +4,7 @@
  * Description: Implementation of an int sequence with push/pop onto a stack
  * Class Invariant: Stack data collection in a LIFO order
  *
- * Author:  Curtis Lui
+ * Author:  Curtis Lu
  * Date:    January 26 2019
  * 
  */

@@ -22,6 +22,7 @@ int main () {
     }
 
 
+
     // enqueue 6, 7, 8, 9, 10
     for (int i = 6; i <= 10; i++) {
         Q.enqueue(i);
