@@ -9,6 +9,7 @@ Token performOp(Token val1, Token val2, Token op);
 
 int main () 
 {
+    // Print menu instructions
     cout << endl;
     cout << "This program can evalute a single well-formed arithmetic expression in two ways:" << endl;
     cout << "   1. Pass a text file from the shell. ex) ./infixeval < textfile.txt" << endl;

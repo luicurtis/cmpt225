@@ -2,10 +2,11 @@
  * Queue.h
  *
  * Description: Implementation of an int sequence with enqueue/dequeue ...
- * Class Invariant: ... in FIFO order
+ * Class Invariant: Queue data collection in a FIFO order
  *
  * Author:  Curtis Lui
  * Date:    February 3 2019
+ * 
  */
   
 class Queue
@@ -20,17 +21,22 @@ class Queue
         unsigned backindex;     // index where the next element will be placed
 
     public:
-        // Desc:  Constructor
+        // Desc:    Default constructor
+        // Post:    Initializes elementCount, frontindex, and backindex to 0.
+        //          capacity to INITIAL_SIZE
         Queue();
 
-        // Desc: Destructor
+        // Desc: Default Destructor
+        // Post: Frees memory and points pointers to NULL
         ~Queue();
 
-        // Desc:  Inserts element x at the back (O(1))
+        // Desc:    Inserts element x at the back (O(1))
+        // Post:    Element x is inserted in the back and backindex is updated
         void enqueue(int x);
 
-        // Desc:  Removes the frontmost element (O(1))
-        //  Pre:  Queue not empty
+        // Desc:    Removes the frontmost element (O(1))
+        //  Pre:    Queue not empty
+        // Post:    Frontmost element is removed and frontindex is updated
         void dequeue();
 
         // Desc:  Returns a copy of the frontmost element (O(1))
