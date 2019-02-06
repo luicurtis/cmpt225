@@ -2,10 +2,11 @@
  * Queue.cpp
  *
  * Description: Implementation of an int sequence with enqueue/dequeue ...
- * Class Invariant: ... in FIFO order
+ * Class Invariant: Queue data collection in a FIFO order
  *
  * Author:  Curtis Lui
  * Date:    February 3 2019
+ * 
  */
  
 #include <iostream>
@@ -15,7 +16,9 @@ using namespace std;
 
 const double QUARTER_FULL = 0.25;
 
-// Desc:  Constructor
+// Desc:    Default constructor
+// Post:    Initializes elementCount, frontindex, and backindex to 0.
+//          capacity to INITIAL_SIZE
 Queue::Queue() : elementCount(0), capacity(INITIAL_SIZE), frontindex(0), backindex(0) 
 {
     elements = NULL;
@@ -23,7 +26,8 @@ Queue::Queue() : elementCount(0), capacity(INITIAL_SIZE), frontindex(0), backind
 
 } // constructor
 
-// Desc: Destructor
+// Desc: Default Destructor
+// Post: Frees memory and points pointers to NULL
 Queue::~Queue()
 {
     delete [] elements;
@@ -31,7 +35,8 @@ Queue::~Queue()
 
 } // Destructor
 
-// Desc:  Inserts element x at the back (O(1))
+// Desc:    Inserts element x at the back (O(1))
+// Post:    Element x is inserted in the back and backindex is updated
 void Queue::enqueue(int x)
 {
     // Check if array is full
@@ -80,8 +85,9 @@ void Queue::enqueue(int x)
 
 } // enqueue
 
-// Desc:  Removes the frontmost element (O(1))
-//  Pre:  Queue not empty
+// Desc:    Removes the frontmost element (O(1))
+//  Pre:    Queue not empty
+// Post:    Frontmost element is removed and frontindex is updated
 void Queue::dequeue() 
 {
     // dequeue element first
