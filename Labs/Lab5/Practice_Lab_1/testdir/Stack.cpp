@@ -1,5 +1,8 @@
 
 #include "Stack.h"
+#include <iostream>
+
+using namespace std;
 
 
 // Desc:  Constructor
@@ -33,7 +36,53 @@ int Stack::pop() {
 //        In case of duplicated max, take the one closest to the top.
 //  Pre:  Stack nonempty
 // Post:  Order of remaining elements is preserved
-int Stack::removeMax() {
+int Stack::removeMax() 
+{
+    int max = arr[len-1];
+    int maxIndex = len-1;
+
+    
+
+    // Search for the max element and it's index
+    for (int i = len-1; i > 0; i--)
+    {
+        if (max < arr[i])
+        {
+            max = arr[i];
+            maxIndex = i;
+        }
+        else if (max == arr[i])
+        {
+            continue;
+        }
+    }
+
+    int tempArray[S_CAP];
+
+    // Create a temp array with max element removed
+    if (len > 0)
+    {
+        // Copy elements before the max element
+        for (int i = 0; i < maxIndex; i++)
+        {
+            tempArray[i] = arr[i];
+        }
+        // Copy elements after the max element
+        for (int i = maxIndex; i < len-1; i++)
+        {
+            tempArray[i] = arr[i + 1];
+        }
+    }
+
+    len--;
+    // Copy over temp array elements into arr
+    for (int i = 0; i < len; i++)
+    {
+        arr[i] = tempArray[i];
+    }
+
+    return max;
+
 } // removeMax
 
 
