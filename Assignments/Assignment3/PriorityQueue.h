@@ -9,30 +9,29 @@
  *
  */
 
- /* None of the current content of this file can be modified. */
+/* None of the current content of this file can be modified. */
 
 #pragma once
 
 #include "Node.h"
 #include "EmptyDataCollectionException.h"
 
-template <class T>  // We can use T, ElementType or other names as a placeholder
-class PriorityQueue {
+template <class T> // We can use T, ElementType or other names as a placeholder
+class PriorityQueue
+{
 
-private:
+ private:
+   Node<T> *head;    // Pointer to first node in the chain
+   int elementCount; // Current count of list items
 
-   Node<T>* head;      // Pointer to first node in the chain
-   int elementCount;   // Current count of list items
+   /* You can add private methods to this class */
 
-/* You can add private methods to this class */
-
-public:
-
+ public:
    // Default Constructor
    PriorityQueue();
 
    // Copy Constructor
-   PriorityQueue(const PriorityQueue& rhsPriorityQueue);
+   PriorityQueue(const PriorityQueue &rhsPriorityQueue);
 
    // Destructor
    ~PriorityQueue();
@@ -50,7 +49,7 @@ public:
    // Precondition: This Priority Queue is sorted.
    // Postcondition: Once newElement is inserted, this Priority Queue remains sorted.
    // Time Efficiency: O(n)
-   bool enqueue(const T& newElement);
+   bool enqueue(const T &newElement);
 
    // Description: Removes the element with the "highest" priority.
    //              It returns "true" if successful, otherwise "false".
@@ -63,6 +62,6 @@ public:
    // Postcondition: This Priority Queue is unchanged.
    // Exceptions: Throws EmptyDataCollectionException if this Priority Queue is empty.
    // Time Efficiency: O(1)
-   T& peek() const throw(EmptyDataCollectionException);
+   T &peek() const throw(EmptyDataCollectionException);
 
 }; // end PriorityQueue
