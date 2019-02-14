@@ -104,6 +104,7 @@ Complex LL::removeSecondLast() {
     toRemove = NULL;
     len--;
     
+
     prev->next = cur;
 
     return value;
