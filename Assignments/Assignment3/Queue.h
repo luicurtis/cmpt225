@@ -214,7 +214,7 @@ bool Queue<ElementType>::dequeue()
 // Desc:  Returns a copy of the frontmost element (O(1))
 //  Pre:  Queue not empty
 template <class ElementType>
-ElementType &Queue<ElementType>::peek() const throw(EmptyDataCollectionException)   // ASK ABOUT THIS
+ElementType &Queue<ElementType>::peek() const throw(EmptyDataCollectionException)
 {
     return &elements[frontindex];
 

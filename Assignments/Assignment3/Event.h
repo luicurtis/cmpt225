@@ -14,9 +14,9 @@
 // EventType
 typedef enum
 {
-    arrive,
-    depart,
-    none
+  arrive,
+  depart,
+  none
 } EventType;
 
 class Event
@@ -30,6 +30,10 @@ class Event
     // Description: Default Constructor
     // Post: Set time and length to 0 and EventType to none
     Event();
+
+    // Description: Constructor
+    // Post: Set time and length to inTime and inLength and EventType to inEt
+    Event(EventType inEt, int inTime, int inLength);
 
     // Description: Return the event type
     int getEvent();

@@ -18,6 +18,14 @@ Event::Event() : et(none), time(0), length(0)
 
 } // End of Event()
 
+Event::Event(EventType inEt, int inTime, int inLength)
+{
+    et = inEt;
+    time  = inTime;
+    length = inLength;
+
+} // End of Event(EventType, int, int)
+
 // Description: Return the event type
 int Event::getEvent()
 {
