@@ -6,27 +6,26 @@
  *                   Designed and implemented as a non-ADT.
  *
  * Created on: 	February 16 2019
- * Author: 		Curtis Lui
+ * Author: 		Inspired from Lab4 source files and modified by Curtis Lui. 
+ * 
  */
- 
-// #pragma once is shorthand for the 2 #include guards we've seen before:
-// #ifndef _NODE and #define _NODE
-// and it means: do not include me more than once.
+
 #pragma once
 
-#include <cstdio>  // Needed for NULL
+#include <cstdio> // Needed for NULL
 
-template <class ElementType> class Node
+template <class ElementType>
+class Node
 {
-	public:
-		// Public attributes - Why are the attributes public?
-		ElementType data;     // The data in the node
-		Node* next;   // Pointer to next node
-		
-		// Constructors (why no destructor?)
-		Node();
-		Node(ElementType theData);
-		Node(ElementType theData, Node* theNextNode);
+  public:
+	// Public attributes
+	ElementType data; // The data in the node
+	Node *next;		  // Pointer to next node
+
+	// Constructors
+	Node();
+	Node(ElementType theData);
+	Node(ElementType theData, Node *theNextNode);
 
 }; // end Node
 
@@ -46,7 +45,7 @@ Node<ElementType>::Node(ElementType theData)
 }
 
 template <class ElementType>
-Node<ElementType>::Node(ElementType theData, Node* theNextNode)
+Node<ElementType>::Node(ElementType theData, Node *theNextNode)
 {
 	data = theData;
 	next = theNextNode;

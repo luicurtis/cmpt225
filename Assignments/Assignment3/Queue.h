@@ -216,6 +216,6 @@ bool Queue<ElementType>::dequeue()
 template <class ElementType>
 ElementType &Queue<ElementType>::peek() const throw(EmptyDataCollectionException)
 {
-    return &elements[frontindex];
+    return elements[frontindex]; // Does not need & for return argument
 
-} // top
+} // peek

@@ -21,7 +21,7 @@ Event::Event() : et(none), time(0), length(0)
 Event::Event(EventType inEt, int inTime, int inLength)
 {
     et = inEt;
-    time  = inTime;
+    time = inTime;
     length = inLength;
 
 } // End of Event(EventType, int, int)

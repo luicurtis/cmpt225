@@ -19,8 +19,7 @@
 template <class T> // We can use T, ElementType or other names as a placeholder
 class PriorityQueue
 {
-
- private:
+  private:
    Node<T> *head;    // Pointer to first node in the chain
    int elementCount; // Current count of list items
 
