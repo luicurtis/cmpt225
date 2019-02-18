@@ -151,7 +151,7 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
 {
     if (elementCount == 0)
     {
-        Node<T> newNode = new Node<T>;
+        Node<T>* newNode = new Node<T>;
         if (newNode == NULL)
         {
             cout << "ERROR: No more memory to allocate" << endl;
@@ -165,7 +165,7 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
     }
     else
     {
-        Node<T> newNode = new Node<T>;
+        Node<T>* newNode = new Node<T>;
         if (newNode == NULL)
         {
             cout << "ERROR: No more memory to allocate" << endl;
