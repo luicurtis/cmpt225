@@ -27,12 +27,14 @@
 
 using namespace std;
 
+bool processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable);
+bool processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable);
+
 int MAX_LINE_SIZE = 256;
 
 int main()
 {
     int numPeople = 0;
-    
     float avgWait = 0.0;
     bool tellerAvailable = true;
     string input = "\0";
@@ -80,8 +82,68 @@ int main()
     }
 
     // Event loop
-    // TODO
+    while (!(eventListPQueue.isEmpty()))
+    {
+        Event newEvent = eventListPQueue.peek();
+
+        int currentTime = newEvent.getTime();
+
+        if (newEvent.getEvent() == arrive)
+        {
+            tellerAvailable = processArrival(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
+        }
+        else
+        {
+            tellerAvailable = processDeparture(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
+        }
+    }
+
+    /* TODO
+     * - Figure out how to bring processing stuff
+     * 
+     */
 
     return 0;
 
 } // End of main()
+
+// Desc: Processes an arrival event 
+bool processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable)
+{
+    // Remove event from the event list
+    eventListPQueue.dequeue();
+    Event customer = arrivalEvent;
+
+    if (bankQueue.isEmpty() && tellerAvailable)
+    {
+        int departureTime = currentTime + customer.getLength();
+        Event newDepartEvent = Event(depart, departureTime, 0);
+        eventListPQueue.enqueue(newDepartEvent);
+        return false;
+    }
+    else
+    {
+        bankQueue.enqueue(customer);
+        return tellerAvailable;
+    }
+}
+
+bool processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable)
+{
+    eventListPQueue.dequeue();
+    if (!(bankQueue.isEmpty()))
+    {
+        Event customer = bankQueue.peek();
+        bankQueue.dequeue();
+        int departureTime = currentTime + customer.getLength();
+        Event newDepartEvent = Event(depart, departureTime, 0);
+        eventListPQueue.enqueue(newDepartEvent);
+
+        return tellerAvailable;
+    }
+    else
+    {
+        return true;
+    }
+    
+}

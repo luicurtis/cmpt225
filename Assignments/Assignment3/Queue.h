@@ -18,7 +18,7 @@ class Queue
 {
   private:
     static unsigned const INITIAL_SIZE = 6;
-    int *elements;
+    ElementType *elements;
     unsigned elementCount; // number of elements in the queue
     unsigned capacity;     // number of cells in the array
     unsigned frontindex;   // index the topmost element
@@ -68,7 +68,7 @@ template <class ElementType>
 Queue<ElementType>::Queue() : elementCount(0), capacity(INITIAL_SIZE), frontindex(0), backindex(0)
 {
     elements = NULL;
-    elements = new int[INITIAL_SIZE];
+    elements = new ElementType[INITIAL_SIZE];
 
 } // constructor
 
@@ -100,7 +100,7 @@ bool Queue<ElementType>::enqueue(const ElementType &newElement)
     if (elementCount == capacity)
     {
         // Create a new array that is twice the orignal size
-        int *newArray = new int[capacity * 2];
+        ElementType *newArray = new ElementType[capacity * 2];
 
         if (newArray == NULL)
         {
@@ -167,7 +167,7 @@ bool Queue<ElementType>::dequeue()
     {
         // Create new array that is half the original size
         int halfCap = capacity / 2;
-        int *newArray = new int[halfCap];
+        ElementType *newArray = new ElementType[halfCap];
 
         if (newArray == NULL)
         {
