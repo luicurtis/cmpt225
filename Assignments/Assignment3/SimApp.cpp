@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "Event.h"
 #include "Queue.h"
@@ -27,14 +28,17 @@
 
 using namespace std;
 
-bool processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable);
-bool processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable);
+int processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable);
+int processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable);
 
 int MAX_LINE_SIZE = 256;
 
 int main()
 {
     int numPeople = 0;
+    int totalDepTime = 0;
+    int totalArrTime = 0;
+    int totalWait = 0;
     float avgWait = 0.0;
     bool tellerAvailable = true;
     string input = "\0";
@@ -68,7 +72,7 @@ int main()
 
         // cout << aTime << " ";
 
-        for (int i = pos+1; i < input.length(); i++)
+        for (int i = pos + 1; i < input.length(); i++)
         {
             tTimeString += input[i];
         }
@@ -90,25 +94,44 @@ int main()
 
         if (newEvent.getEvent() == arrive)
         {
-            tellerAvailable = processArrival(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
+            cout << "Processing an arrival event at time:    " << newEvent.getTime() << endl;
+            totalArrTime += processArrival(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
+            numPeople++;
         }
         else
         {
-            tellerAvailable = processDeparture(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
+            cout << "Processing a departure event at time:   " << newEvent.getTime() << endl;
+            totalDepTime += processDeparture(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
         }
     }
 
+    cout << "Simulation Ends" << endl << endl;
+
+    totalWait = totalDepTime - totalArrTime;
+    avgWait = float(totalWait) / float(numPeople);
+
+    cout << "Final Statistics:" << endl;
+	cout << "   Total number of people processed:  " << numPeople;
+    // cout << fixed;
+    cout << setprecision(1);
+	cout << "   Average amount of time spent waiting: " << avgWait;
+
+
+
     /* TODO
      * - Figure out how to bring processing stuff
+     * - Final Statistics
      * 
-     */
+     */	
 
     return 0;
 
 } // End of main()
 
 // Desc: Processes an arrival event 
-bool processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable)
+// Return:  Returns the time that the the arrivalEvent occured.
+//          Returns 0 if the line was empty and the teller is available
+int processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable)
 {
     // Remove event from the event list
     eventListPQueue.dequeue();
@@ -119,31 +142,38 @@ bool processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, 
         int departureTime = currentTime + customer.getLength();
         Event newDepartEvent = Event(depart, departureTime, 0);
         eventListPQueue.enqueue(newDepartEvent);
-        return false;
+        tellerAvailable = false;
+        return 0;
     }
     else
     {
         bankQueue.enqueue(customer);
-        return tellerAvailable;
+        return customer.getTime();
     }
-}
+} // End of processArrival (Event, PriorityQueue<Event>, Queue<Event>, int, bool)
 
-bool processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool tellerAvailable)
+// Desc: Processes an departure event 
+// Return:  Returns the time that the the departureEvent occured.
+//          Returns 0 if the line was empty
+int processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable)
 {
     eventListPQueue.dequeue();
+
     if (!(bankQueue.isEmpty()))
     {
+        // Customer at front of line begins transaction
         Event customer = bankQueue.peek();
         bankQueue.dequeue();
         int departureTime = currentTime + customer.getLength();
         Event newDepartEvent = Event(depart, departureTime, 0);
         eventListPQueue.enqueue(newDepartEvent);
 
-        return tellerAvailable;
+        return departureTime;
     }
     else
     {
-        return true;
+        tellerAvailable = true;
+        return 0;
     }
     
 }
