@@ -64,26 +64,32 @@ int main()
 
         for (int i = 0; i < pos; i++)
         {
+            //cout << input[i] << endl;
             aTimeString += input[i];
         }
 
         aTimeString += '\0';
         aTime = stoi(aTimeString);
 
-        // cout << aTime << " ";
+        //cout << aTime << " ";
 
         for (int i = pos + 1; i < input.length(); i++)
         {
+            //cout << input[i] << endl;
             tTimeString += input[i];
         }
         tTimeString += '\0';
         tTime = stoi(tTimeString);
 
-        // cout << tTime << endl;
+        //cout << tTime << endl;
         
         Event newArrivalEvent(arrive, aTime, tTime);
         eventListPQueue.enqueue(newArrivalEvent);
+
+        //cout << "im not stuck" << endl;
     }
+
+    //cout << "Finished Creating and adding arival events to event list" << endl;
 
     // Event loop
     while (!(eventListPQueue.isEmpty()))
@@ -94,13 +100,29 @@ int main()
 
         if (newEvent.getEvent() == arrive)
         {
-            cout << "Processing an arrival event at time:    " << newEvent.getTime() << endl;
+            if(newEvent.getTime() < 10)
+            {
+                cout << "Processing an arrival event at time:    " << newEvent.getTime() << endl;
+            }
+            else
+            {
+                cout << "Processing an arrival event at time:   " << newEvent.getTime() << endl;
+            }
+            
             totalArrTime += processArrival(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
             numPeople++;
         }
         else
         {
-            cout << "Processing a departure event at time:   " << newEvent.getTime() << endl;
+            if(newEvent.getTime() < 10)
+            {
+                cout << "Processing a departure event at time:   " << newEvent.getTime() << endl;
+            }
+            else
+            {
+                cout << "Processing a departure event at time:  " << newEvent.getTime() << endl;
+            }
+
             totalDepTime += processDeparture(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
         }
     }
@@ -109,20 +131,16 @@ int main()
 
     totalWait = totalDepTime - totalArrTime;
     avgWait = float(totalWait) / float(numPeople);
+    cout << "totalDepTime: " << totalDepTime << endl;
+    cout << "totalArrTime: " << totalArrTime << endl;
+    cout << "TOTAL WAIT: " << totalWait << endl;
+
 
     cout << "Final Statistics:" << endl;
-	cout << "   Total number of people processed:  " << numPeople;
+	cout << "   Total number of people processed:  " << numPeople << endl;
     // cout << fixed;
-    cout << setprecision(1);
-	cout << "   Average amount of time spent waiting: " << avgWait;
-
-
-
-    /* TODO
-     * - Figure out how to bring processing stuff
-     * - Final Statistics
-     * 
-     */	
+    cout << setprecision(2);
+	cout << "   Average amount of time spent waiting: " << avgWait << endl;
 
     return 0;
 
@@ -167,13 +185,13 @@ int processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueu
         int departureTime = currentTime + customer.getLength();
         Event newDepartEvent = Event(depart, departureTime, 0);
         eventListPQueue.enqueue(newDepartEvent);
-
+        cout << "DEPARTURE TIME: " << departureTime << endl;
         return departureTime;
     }
     else
     {
         tellerAvailable = true;
+        cout << "RETURNING 0" << endl;
         return 0;
     }
-    
-}
+} // End of processDeparture (Event, PriorityQueue<Event>, Queue<Event>, int, bool)

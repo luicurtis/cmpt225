@@ -170,40 +170,41 @@ bool PriorityQueue<T>::isEmpty() const
 template <class T>
 bool PriorityQueue<T>::enqueue(const T &newElement)
 {
-    if (elementCount == 0)
+    Node<T> *newNode = new Node<T>;
+    if (newNode == NULL)
     {
-        Node<T> *newNode = new Node<T>;
-        if (newNode == NULL)
-        {
-            cout << "ERROR: No more memory to allocate" << endl;
-            return false;
-        }
+        //cout << "ERROR: No more memory to allocate" << endl;
+        return false;
+    }
+    
+    newNode->data = newElement;
+    
+    // If queue is empty
+    if (head == NULL || newElement < head->data)
+    {
+        //cout << "Queue is empty or newElement < head->data" << endl;
+
+        newNode->next = head;
         head = newNode;
-        head->data = newElement;
         elementCount++;
 
         return true;
     }
+    // Queue contains nodes
     else
     {
-        Node<T> *newNode = new Node<T>;
-        if (newNode == NULL)
-        {
-            cout << "ERROR: No more memory to allocate" << endl;
-            return false;
-        }
-        newNode->data = newElement;
-
         Node<T> *cur = head;
+        Node<T> *prev = NULL;
 
-        // Move cur pointer to the last node in the list
-        while (cur->next != NULL)
+        // Find place to insert node
+        while (cur->next != NULL && cur->next->data < newElement)
         {
-            cur = cur->next;
+                cur = cur->next;
         }
 
-        cur->next = newNode; // Set the last node to point to the newNode
-        newNode->next = NULL;
+        newNode->next = cur->next;
+        cur->next = newNode;
+
         elementCount++;
 
         return true;

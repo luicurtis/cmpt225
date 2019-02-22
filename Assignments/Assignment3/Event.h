@@ -56,4 +56,10 @@ class Event
     // Post: Event length is set to inLength
     void setLength(int inLength);
 
+    // Description: Less than operator. Compares "this" Event object with "rhs" Event object.
+		//              Returns true if time of "this" Event object is < time of "rhs" Event object.
+    //              If times are the same, return true if EventType of "this" Event object is arrive
+    //              and EventType of "rhs" Event object is depart.
+		bool operator<(const Event &rhs) const;
+
 }; // End of Event
