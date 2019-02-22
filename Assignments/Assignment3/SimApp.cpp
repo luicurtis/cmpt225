@@ -131,16 +131,16 @@ int main()
 
     totalWait = totalDepTime - totalArrTime;
     avgWait = float(totalWait) / float(numPeople);
-    cout << "totalDepTime: " << totalDepTime << endl;
-    cout << "totalArrTime: " << totalArrTime << endl;
-    cout << "TOTAL WAIT: " << totalWait << endl;
+    // cout << "totalDepTime: " << totalDepTime << endl;
+    // cout << "totalArrTime: " << totalArrTime << endl;
+    // cout << "TOTAL WAIT: " << totalWait << endl;
 
 
-    cout << "Final Statistics:" << endl;
-	cout << "   Total number of people processed:  " << numPeople << endl;
+    cout << "Final Statistics:  " << endl;
+	cout << "	Total number of people processed:  " << numPeople << endl;
     // cout << fixed;
-    cout << setprecision(2);
-	cout << "   Average amount of time spent waiting: " << avgWait << endl;
+    cout << setprecision(3);
+	cout << "	Average amount of time spent waiting: " << avgWait << endl;
 
     return 0;
 
@@ -185,13 +185,11 @@ int processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueu
         int departureTime = currentTime + customer.getLength();
         Event newDepartEvent = Event(depart, departureTime, 0);
         eventListPQueue.enqueue(newDepartEvent);
-        cout << "DEPARTURE TIME: " << departureTime << endl;
-        return departureTime;
+        return currentTime;
     }
     else
     {
         tellerAvailable = true;
-        cout << "RETURNING 0" << endl;
         return 0;
     }
 } // End of processDeparture (Event, PriorityQueue<Event>, Queue<Event>, int, bool)
