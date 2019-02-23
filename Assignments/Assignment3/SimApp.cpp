@@ -28,10 +28,8 @@
 
 using namespace std;
 
-int processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable);
-int processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable);
-
-int MAX_LINE_SIZE = 256;
+int processArrival(Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable);
+int processDeparture(Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable);
 
 int main()
 {
@@ -48,7 +46,7 @@ int main()
     PriorityQueue<Event> eventListPQueue;
 
     cout << "Simulation Begins" << endl;
-    
+
     // Create and add arival events to event list
     while (getline(cin, input))
     {
@@ -64,32 +62,22 @@ int main()
 
         for (int i = 0; i < pos; i++)
         {
-            //cout << input[i] << endl;
             aTimeString += input[i];
         }
 
         aTimeString += '\0';
         aTime = stoi(aTimeString);
 
-        //cout << aTime << " ";
-
         for (int i = pos + 1; i < input.length(); i++)
         {
-            //cout << input[i] << endl;
             tTimeString += input[i];
         }
         tTimeString += '\0';
         tTime = stoi(tTimeString);
 
-        //cout << tTime << endl;
-        
         Event newArrivalEvent(arrive, aTime, tTime);
         eventListPQueue.enqueue(newArrivalEvent);
-
-        //cout << "im not stuck" << endl;
     }
-
-    //cout << "Finished Creating and adding arival events to event list" << endl;
 
     // Event loop
     while (!(eventListPQueue.isEmpty()))
@@ -100,7 +88,8 @@ int main()
 
         if (newEvent.getEvent() == arrive)
         {
-            if(newEvent.getTime() < 10)
+            // Printing white space properly
+            if (newEvent.getTime() < 10)
             {
                 cout << "Processing an arrival event at time:    " << newEvent.getTime() << endl;
             }
@@ -108,13 +97,14 @@ int main()
             {
                 cout << "Processing an arrival event at time:   " << newEvent.getTime() << endl;
             }
-            
+
             totalArrTime += processArrival(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
             numPeople++;
         }
         else
         {
-            if(newEvent.getTime() < 10)
+            // Printing white space properly
+            if (newEvent.getTime() < 10)
             {
                 cout << "Processing a departure event at time:   " << newEvent.getTime() << endl;
             }
@@ -127,29 +117,25 @@ int main()
         }
     }
 
-    cout << "Simulation Ends" << endl << endl;
+    cout << "Simulation Ends" << endl
+         << endl;
 
     totalWait = totalDepTime - totalArrTime;
     avgWait = float(totalWait) / float(numPeople);
-    // cout << "totalDepTime: " << totalDepTime << endl;
-    // cout << "totalArrTime: " << totalArrTime << endl;
-    // cout << "TOTAL WAIT: " << totalWait << endl;
-
 
     cout << "Final Statistics:  " << endl;
-	cout << "	Total number of people processed:  " << numPeople << endl;
-    // cout << fixed;
+    cout << "    Total number of people processed:  " << numPeople << endl;
     cout << setprecision(3);
-	cout << "	Average amount of time spent waiting: " << avgWait << endl;
+    cout << "	 Average amount of time spent waiting: " << avgWait << endl;
 
     return 0;
 
 } // End of main()
 
-// Desc: Processes an arrival event 
+// Desc: Processes an arrival event
 // Return:  Returns the time that the the arrivalEvent occured.
 //          Returns 0 if the line was empty and the teller is available
-int processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable)
+int processArrival(Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable)
 {
     // Remove event from the event list
     eventListPQueue.dequeue();
@@ -168,12 +154,12 @@ int processArrival (Event arrivalEvent, PriorityQueue<Event> &eventListPQueue, Q
         bankQueue.enqueue(customer);
         return customer.getTime();
     }
-} // End of processArrival (Event, PriorityQueue<Event>, Queue<Event>, int, bool)
+} // End of processArrival (Event, PriorityQueue<Event>&, Queue<Event>&, int, bool&)
 
-// Desc: Processes an departure event 
+// Desc: Processes an departure event
 // Return:  Returns the time that the the departureEvent occured.
 //          Returns 0 if the line was empty
-int processDeparture (Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable)
+int processDeparture(Event departureEvent, PriorityQueue<Event> &eventListPQueue, Queue<Event> &bankQueue, int currentTime, bool &tellerAvailable)
 {
     eventListPQueue.dequeue();
 

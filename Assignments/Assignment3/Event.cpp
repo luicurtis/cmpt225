@@ -126,4 +126,4 @@ bool Event::operator<(const Event &rhs) const
         }
     }
 
-} // End of operator >
+} // End of operator <

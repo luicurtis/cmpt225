@@ -1,10 +1,10 @@
 /* 
  * Queue.h
  *
- * Description: Implementation of an int sequence with enqueue/dequeue 
+ * Description: Implementation of an ElementType sequence with enqueue/dequeue 
  * Class Invariant: Queue data collection in a FIFO order
  *
- * Author:  Curtis Lui
+ * Author:  Modified from Assignment 2 Question 4 by Curtis Lui
  * Date:    February 12 2019
  * 
  */
@@ -70,7 +70,7 @@ Queue<ElementType>::Queue() : elementCount(0), capacity(INITIAL_SIZE), frontinde
     elements = NULL;
     elements = new ElementType[INITIAL_SIZE];
 
-} // constructor
+} // End of Queue()
 
 // Desc: Default Destructor
 // Post: Frees memory and points pointers to NULL
@@ -80,7 +80,7 @@ Queue<ElementType>::~Queue()
     delete[] elements;
     elements = NULL;
 
-} // Destructor
+} // End of ~Queue()
 
 // Description: Returns "true" is this Queue is empty, otherwise "false".
 // Time Efficiency: O(1)
@@ -89,7 +89,7 @@ bool Queue<ElementType>::isEmpty() const
 {
     return (elementCount == 0);
 
-} // isempty
+} // End of isEmpty()
 
 // Desc:    Inserts element x at the back (O(1))
 // Post:    Element x is inserted in the back and backindex is updated
@@ -147,7 +147,7 @@ bool Queue<ElementType>::enqueue(const ElementType &newElement)
 
     return true;
 
-} // enqueue
+} // End of enqueue(const ElementType &)
 
 // Desc:    Removes the frontmost element (O(1))
 //  Pre:    Queue not empty
@@ -209,7 +209,7 @@ bool Queue<ElementType>::dequeue()
 
     return true;
 
-} // dequeue
+} // End of dequeue()
 
 // Desc:  Returns a copy of the frontmost element (O(1))
 //  Pre:  Queue not empty
@@ -218,4 +218,4 @@ ElementType &Queue<ElementType>::peek() const throw(EmptyDataCollectionException
 {
     return elements[frontindex]; // Does not need & for return argument
 
-} // peek
+} // End of peek()

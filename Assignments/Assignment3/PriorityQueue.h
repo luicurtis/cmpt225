@@ -9,22 +9,18 @@
  *
  */
 
-/* None of the current content of this file can be modified. */
-
 #pragma once
 
 #include <iostream>
 #include "Node.h"
 #include "EmptyDataCollectionException.h"
 
-template <class T> // We can use T, ElementType or other names as a placeholder
+template <class T>
 class PriorityQueue
 {
   private:
     Node<T> *head;    // Pointer to first node in the chain
     int elementCount; // Current count of list items
-
-    /* You can add private methods to this class */
 
   public:
     // Default Constructor
@@ -88,7 +84,6 @@ class PriorityQueue
 }; // end PriorityQueue
 
 // Implementation
-
 // Default Constructor
 template <class T>
 PriorityQueue<T>::PriorityQueue() : head(NULL), elementCount(0)
@@ -117,7 +112,7 @@ PriorityQueue<T>::PriorityQueue(const PriorityQueue &rhsPriorityQueue)
 
         curRHS = curRHS->next; // Move to next Node in RHS
     }
-}
+} // End of PriorityQueue(PriorityQueue&)
 
 // Destructor
 template <class T>
@@ -135,6 +130,7 @@ PriorityQueue<T>::~PriorityQueue()
     }
 
     head = NULL;
+
 } // End of ~PriorityQueue()
 
 // Description: Returns the number of elements in the Priority Queue.
@@ -173,7 +169,6 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
     Node<T> *newNode = new Node<T>;
     if (newNode == NULL)
     {
-        //cout << "ERROR: No more memory to allocate" << endl;
         return false;
     }
     
@@ -182,8 +177,6 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
     // If queue is empty
     if (head == NULL || newElement < head->data)
     {
-        //cout << "Queue is empty or newElement < head->data" << endl;
-
         newNode->next = head;
         head = newNode;
         elementCount++;
@@ -210,7 +203,7 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
         return true;
     }
 
-} // End of enqueue(const T)
+} // End of enqueue(const T&)
 
 // Description: Removes the element with the "highest" priority.
 //              It returns "true" if successful, otherwise "false".
