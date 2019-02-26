@@ -91,11 +91,11 @@ int main()
             // Printing white space properly
             if (newEvent.getTime() < 10)
             {
-                cout << "Processing an arrival event at time:    " << newEvent.getTime() << endl;
+                cout << "Processing an arrival event at time:     " << newEvent.getTime() << endl;
             }
             else
             {
-                cout << "Processing an arrival event at time:   " << newEvent.getTime() << endl;
+                cout << "Processing an arrival event at time:    " << newEvent.getTime() << endl;
             }
 
             totalArrTime += processArrival(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
@@ -106,11 +106,11 @@ int main()
             // Printing white space properly
             if (newEvent.getTime() < 10)
             {
-                cout << "Processing a departure event at time:   " << newEvent.getTime() << endl;
+                cout << "Processing a departure event at time:    " << newEvent.getTime() << endl;
             }
             else
             {
-                cout << "Processing a departure event at time:  " << newEvent.getTime() << endl;
+                cout << "Processing a departure event at time:   " << newEvent.getTime() << endl;
             }
 
             totalDepTime += processDeparture(newEvent, eventListPQueue, bankQueue, currentTime, tellerAvailable);
@@ -123,10 +123,10 @@ int main()
     totalWait = totalDepTime - totalArrTime;
     avgWait = float(totalWait) / float(numPeople);
 
-    cout << "Final Statistics:  " << endl;
-    cout << "        Total number of people processed:  " << numPeople << endl;
+    cout << "Final Statistics:  " << endl << endl;
+    cout << "     Total number of people processed: " << numPeople << endl;
     cout << setprecision(3);
-    cout << "        Average amount of time spent waiting: " << avgWait << endl;
+    cout << "     Average amount of time spent waiting: " << avgWait << endl;
 
     return 0;
 
