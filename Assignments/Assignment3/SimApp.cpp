@@ -124,9 +124,9 @@ int main()
     avgWait = float(totalWait) / float(numPeople);
 
     cout << "Final Statistics:  " << endl;
-    cout << "    Total number of people processed:  " << numPeople << endl;
+    cout << "        Total number of people processed:  " << numPeople << endl;
     cout << setprecision(3);
-    cout << "	 Average amount of time spent waiting: " << avgWait << endl;
+    cout << "        Average amount of time spent waiting: " << avgWait << endl;
 
     return 0;
 
