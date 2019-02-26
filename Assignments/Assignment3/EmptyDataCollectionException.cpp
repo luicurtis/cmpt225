@@ -7,13 +7,12 @@
  * Author: Inspired from our textbook's authors Frank M. Carrano and Tim Henry.
  *         Copyright (c) 2013 __Pearson Education__. All rights reserved.
  */
- 
 
-#include "EmptyDataCollectionException.h"  
+#include "EmptyDataCollectionException.h"
 
-EmptyDataCollectionException::EmptyDataCollectionException(const string& message): 
-logic_error("Empty Data Collection ADT Class Exception: " + message)
+EmptyDataCollectionException::EmptyDataCollectionException(const string &message) : logic_error("Empty Data Collection ADT Class Exception: " + message)
 {
-}  // end constructor
+
+} // end constructor
 
 // End of implementation file.

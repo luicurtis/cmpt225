@@ -7,7 +7,7 @@
  * Author: Inspired from our textbook's authors Frank M. Carrano and Tim Henry.
  *         Copyright (c) 2013 __Pearson Education__. All rights reserved.
  */
- 
+
 #pragma once
 
 #include <stdexcept>
@@ -17,7 +17,7 @@ using namespace std;
 
 class EmptyDataCollectionException : public logic_error
 {
-public:
-   EmptyDataCollectionException(const string& message = "");
-   
-}; // end EmptyDataCollectionException 
+ public:
+   EmptyDataCollectionException(const string &message = "");
+
+}; // end EmptyDataCollectionException

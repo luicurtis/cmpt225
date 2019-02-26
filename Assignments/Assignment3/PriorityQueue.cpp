@@ -9,8 +9,160 @@
  *
  */
 
-#include "PriorityQueue.h"  // Header file
+#include <iostream>
+#include "PriorityQueue.h" // Header file
+#include "EmptyDataCollectionException.h"
 
+using namespace std;
 
+// Default Constructor
+template <class T>
+PriorityQueue<T>::PriorityQueue() : head(NULL), elementCount(0)
+{
+
+} // End of PriorityQueue()
+
+// Copy Constructor
+template <class T>
+PriorityQueue<T>::PriorityQueue(const PriorityQueue &rhsPriorityQueue)
+{
+    Node<T> *curRHS = rhsPriorityQueue.head;
+    Node<T> *curThis = NULL;
+    Node<T> newNode = new Node<T>;
+    head = newNode;
+    head->data = curRHS->data;
+    curThis = head;
+
+    while (curRHS != NULL)
+    {
+        Node<T> newNode = new Node<T>; // Create new node to add to pQueue
+        curThis->next = newNode;       // Link prev Node to newNode
+        curThis = newNode;             // Point to the newNode
+        curThis->data = curRHS->data;  // Set Node data equal to RHS
+        elementCount++;
+
+        curRHS = curRHS->next; // Move to next Node in RHS
+    }
+}
+
+// Destructor
+template <class T>
+PriorityQueue<T>::~PriorityQueue()
+{
+    Node<T> *cur = head;
+    Node<T> *temp = NULL;
+
+    while (cur != NULL)
+    {
+        temp = cur;
+        cur = cur->next;
+        delete temp;
+        elementCount--;
+    }
+
+    head = NULL;
+} // End of ~PriorityQueue()
+
+// Description: Returns the number of elements in the Priority Queue.
+// Time Efficiency: O(1)
+template <class T>
+int PriorityQueue<T>::getElementCount() const
+{
+    return elementCount;
+
+} // End of getElementCount()
+
+// Description: Returns "true" is this Priority Queue is empty, otherwise "false".
+// Time Efficiency: O(1)
+template <class T>
+bool PriorityQueue<T>::isEmpty() const
+{
+    if (elementCount == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+} // End of isEmpty()
+
+// Description: Inserts newElement in sort order.
+//              It returns "true" if successful, otherwise "false".
+// Precondition: This Priority Queue is sorted.
+// Postcondition: Once newElement is inserted, this Priority Queue remains sorted.
+// Time Efficiency: O(n)
+template <class T>
+bool PriorityQueue<T>::enqueue(const T &newElement)
+{
+    if (elementCount == 0)
+    {
+        Node<T> newNode = new Node<T>;
+        if (newNode == NULL)
+        {
+            cout << "ERROR: No more memory to allocate" << endl;
+            return false;
+        }
+        head = newNode;
+        head->data = newElement;
+        elementCount++;
+
+        return true;
+    }
+    else
+    {
+        Node<T> newNode = new Node<T>;
+        if (newNode == NULL)
+        {
+            cout << "ERROR: No more memory to allocate" << endl;
+            return false;
+        }
+        newNode->data = newElement;
+
+        Node<T> *cur = head;
+
+        // Move cur pointer to the last node in the list
+        while (cur->next != NULL)
+        {
+            cur = cur->next;
+        }
+
+        cur->next = newNode; // Set the last node to point to the newNode
+        newNode->next = NULL;
+        elementCount++;
+
+        return true;
+    }
+
+} // End of enqueue(const T)
+
+// Description: Removes the element with the "highest" priority.
+//              It returns "true" if successful, otherwise "false".
+// Precondition: This Priority Queue is not empty.
+// Time Efficiency: O(1)
+template <class T>
+bool PriorityQueue<T>::dequeue()
+{
+    Node<T> *temp = head;
+    head = head->next;
+    delete temp;
+    elementCount--;
+
+    return true;
+
+} // End of dequeue()
+
+// Description: Returns the element with the "highest" priority.
+// Precondition: This Priority Queue is not empty.
+// Postcondition: This Priority Queue is unchanged.
+// Exceptions: Throws EmptyDataCollectionException if this Priority Queue is empty.
+// Time Efficiency: O(1)
+template <class T>
+T &PriorityQueue<T>::peek() const throw(EmptyDataCollectionException)
+{
+    return head->data; // Does not need & for return argument
+
+} // End of peek()
 
 //  End of implementation file.
