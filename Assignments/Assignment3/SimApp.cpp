@@ -20,7 +20,6 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
 
 #include "Event.h"
 #include "Queue.h"
@@ -125,7 +124,6 @@ int main()
 
     cout << "Final Statistics:  " << endl << endl;
     cout << "     Total number of people processed: " << numPeople << endl;
-    cout << setprecision(3);
     cout << "     Average amount of time spent waiting: " << avgWait << endl;
 
     return 0;
