@@ -16,7 +16,7 @@ void merge(int arr[], int low, int mid, int mid1, int high);
 void mergeSort(int arr[], int low, int high) {
 
 
-	// TO DO:: Fill in this code.
+	// TO DO:: Fill in this code..
 
 }
 
