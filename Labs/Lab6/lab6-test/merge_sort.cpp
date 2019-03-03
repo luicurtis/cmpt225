@@ -59,24 +59,6 @@ void merge(int arr[], int low, int mid, int mid1, int high)
 		tempArrIndex++;
 	}
 
-	// if (arrIndex1 > mid)
-	// {
-	// 	for (int i = arrIndex2; i <= high; i++)
-	// 	{
-	// 		tempArr[tempArrIndex] = arr[i];
-	// 		tempArrIndex++;
-	// 	}
-	// }
-	// else
-	// {
-	// 	for (int i = arrIndex1; i <= mid; i++)
-	// 	{
-	// 		tempArr[tempArrIndex] = arr[i];
-	// 		tempArrIndex++;
-	// 	}
-	// }
-
-
 	// If subArray1 has unmerged items
 	while (arrIndex1 <= mid)
 	{
@@ -92,29 +74,6 @@ void merge(int arr[], int low, int mid, int mid1, int high)
 		arrIndex2++;
 		tempArrIndex++;
 	}
-
-	// // If arrIndex2 was the reason for the while loop stopping
-	// // then subArray1 has unmerged items
-	// if (arrIndex2 > high)
-	// {
-	// 	// If subArray1 has unmerged items
-	// 	while (arrIndex1 <= mid)
-	// 	{
-	// 		tempArr[tempArrIndex] = arr[arrIndex1];
-	// 		arrIndex1++;
-	// 		tempArrIndex++;
-	// 	}
-	// }
-	// else
-	// {
-	// 	// If subArray2 has unmerged items
-	// 	while (arrIndex2 <= high)
-	// 	{
-	// 		tempArr[tempArrIndex] = arr[arrIndex2];
-	// 		arrIndex2++;
-	// 		tempArrIndex++;
-	// 	}
-	// }
 
 	for (int i = low; i <= high; i++)
 	{
