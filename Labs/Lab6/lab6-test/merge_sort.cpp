@@ -40,7 +40,7 @@ void merge(int arr[], int low, int mid, int mid1, int high)
 
 	// Create temp array
 	int arrSize = (high - low) + 1;
-	int *tempArr = new int[arrSize];
+	int tempArr[arrSize];
 	int tempArrIndex = low;
 
 	// While both subarrays contain unmerged elements
@@ -79,8 +79,6 @@ void merge(int arr[], int low, int mid, int mid1, int high)
 	{
 		arr[i] = tempArr[i];
 	}
-
-	delete [] tempArr;
 }
 
 // A driver program to test mergeSort.
