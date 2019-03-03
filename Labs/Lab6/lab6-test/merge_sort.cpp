@@ -15,9 +15,9 @@ void mergeSort(int arr[], int low, int high)
 	// Base case
 	if (low < high)
 	{
-		int mid = (low + high) / 2;			 // Find midpoint of array
-		mergeSort(arr, low, mid);			 // Recursively partition left side of array until each subarray is length 1
-		mergeSort(arr, (mid + 1), high);		 // Recursively partition right side of array until each subarray is length 1
+		int mid = low + (high - low) / 2;	  //This avoids overflow when low, high are too large
+		mergeSort(arr, low, mid);			   // Recursively partition left side of array until each subarray is length 1
+		mergeSort(arr, (mid + 1), high);	   // Recursively partition right side of array until each subarray is length 1
 		merge(arr, low, mid, (mid + 1), high); // Recursively merge left and right partitions
 	}
 }
@@ -34,7 +34,7 @@ void mergeSort(int arr[], int low, int high)
 //   arr[low]...arr[high] is sorted in increasing.
 void merge(int arr[], int low, int mid, int mid1, int high)
 {
-	// Initialize Indices 
+	// Initialize Indices
 	int arrIndex1 = low;
 	int arrIndex2 = mid1;
 
@@ -44,11 +44,11 @@ void merge(int arr[], int low, int mid, int mid1, int high)
 	int tempArrIndex = low;
 
 	// While both subarrays contain unmerged elements
-	while (arrIndex1 < mid && arrIndex2 < high)
+	while (arrIndex1 <= mid && arrIndex2 <= high)
 	{
-		if (arr[arrIndex1] < arr[arrIndex2])
+		if (arr[arrIndex1] <= arr[arrIndex2])
 		{
-			tempArr[tempArrIndex] = arr[arrIndex1];			
+			tempArr[tempArrIndex] = arr[arrIndex1];
 			arrIndex1++;
 		}
 		else
@@ -56,24 +56,65 @@ void merge(int arr[], int low, int mid, int mid1, int high)
 			tempArr[tempArrIndex] = arr[arrIndex2];
 			arrIndex2++;
 		}
-
 		tempArrIndex++;
 	}
+
+	// if (arrIndex1 > mid)
+	// {
+	// 	for (int i = arrIndex2; i <= high; i++)
+	// 	{
+	// 		tempArr[tempArrIndex] = arr[i];
+	// 		tempArrIndex++;
+	// 	}
+	// }
+	// else
+	// {
+	// 	for (int i = arrIndex1; i <= mid; i++)
+	// 	{
+	// 		tempArr[tempArrIndex] = arr[i];
+	// 		tempArrIndex++;
+	// 	}
+	// }
+
+
 	// If subArray1 has unmerged items
-	while (arrIndex1 < mid)
+	while (arrIndex1 <= mid)
 	{
-		tempArr[tempArrIndex] = arr[arrIndex1];			
+		tempArr[tempArrIndex] = arr[arrIndex1];
 		arrIndex1++;
 		tempArrIndex++;
 	}
 
 	// If subArray2 has unmerged items
-	while (arrIndex2 < high)
+	while (arrIndex2 <= high)
 	{
 		tempArr[tempArrIndex] = arr[arrIndex2];
 		arrIndex2++;
 		tempArrIndex++;
 	}
+
+	// // If arrIndex2 was the reason for the while loop stopping
+	// // then subArray1 has unmerged items
+	// if (arrIndex2 > high)
+	// {
+	// 	// If subArray1 has unmerged items
+	// 	while (arrIndex1 <= mid)
+	// 	{
+	// 		tempArr[tempArrIndex] = arr[arrIndex1];
+	// 		arrIndex1++;
+	// 		tempArrIndex++;
+	// 	}
+	// }
+	// else
+	// {
+	// 	// If subArray2 has unmerged items
+	// 	while (arrIndex2 <= high)
+	// 	{
+	// 		tempArr[tempArrIndex] = arr[arrIndex2];
+	// 		arrIndex2++;
+	// 		tempArrIndex++;
+	// 	}
+	// }
 
 	for (int i = low; i <= high; i++)
 	{
