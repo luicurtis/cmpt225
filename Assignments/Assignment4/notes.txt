@@ -1,0 +1,22 @@
+Building Tree:
+- use a priority queue to have the lowest weights in front
+
+Using the application:
+- need to utilize reading command line arguments
+
+Input/output streams
+- http://www.cplusplus.com/doc/tutorial/files/
+- http://www.cplusplus.com/reference/fstream/ifstream/
+- https://stackoverflow.com/questions/15736071/file-reading-class-c
+- https://stackoverflow.com/questions/22390641/read-file-by-bits-c
+	- char is 8 bits
+	- for loop starts at 7
+	- every loop it's going to shift right i bits and bitwise AND with that bit
+
+- http://courses.cs.vt.edu/~cs2604/fall00/binio.html
+- http://www.cplusplus.com/forum/general/21018/
+- https://stackoverflow.com/questions/33457974/outputting-a-binary-string-to-a-binary-file-in-c
+- http://www.eecs.umich.edu/courses/eecs380/HANDOUTS/cppBinaryFileIO-2.html
+
+Compressed File
+- Needs to contain the # of bytes as the first thing in the file
