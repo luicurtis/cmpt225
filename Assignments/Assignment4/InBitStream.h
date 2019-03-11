@@ -21,7 +21,8 @@ class InBitStream
 {
   private:
     ifstream inFile;
-    int numBits;
+    int numDigitsforBytes;
+    int numBytes;
     string bitSequence;
     // Maybe a huff tree object or something
 
@@ -30,12 +31,12 @@ class InBitStream
     InBitStream(string& fileName);
     ~InBitStream(); // Close the file
     
-    int getNumBits();
-    string getbitSequence();
-    bool isOpen();
+    int getNumBytes() const;
+    string getbitSequence() const;
+    bool isOpen() const;
     
     void open(string& fileName);
     void close();
-    void setNumBits();
+    void setNumBytes();
     void setbitSequence();
 };

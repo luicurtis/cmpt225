@@ -14,11 +14,12 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <cmath>
 #include "InBitStream.h"
 
 using namespace std;
 
-InBitStream::InBitStream() : inFile(), numBits(0), bitSequence("\0")
+InBitStream::InBitStream() : inFile(), numBytes(0), bitSequence("\0")
 {
 
 } // Default Constructor
@@ -28,15 +29,16 @@ InBitStream::InBitStream(string& fileName)
     inFile.open(fileName, ios::in | ios::binary);
     if (!inFile.is_open())
     {
-        cout << "ERROR: File could not be open" << endl;
+        cout << "ERROR: File could not be opened" << endl;
         inFile.close();
     }
     else
     {
         char c;
-        bool bitValue;
+        bool bitValue = false;
+        int bitCounter = 0;
 
-        while(inFile.get(c))
+        while(inFile.get(c) && bitCounter < numBytes)
         {
             // Use bitwise operators to shift bits and extract them
             // from the char c
@@ -52,7 +54,12 @@ InBitStream::InBitStream(string& fileName)
                     bitSequence += '0';
                 }
             }
+            
+            bitCounter++;
         }
+
+        // TODO:
+        // - need to import the huff tree from the file
     }
 } // Constuctor
 
@@ -62,19 +69,21 @@ InBitStream::~InBitStream()
 
 } // Destructor
 
-int InBitStream::getNumBits()
+int InBitStream::getNumBytes() const
 {
-    return numBits;
+    return numBytes;
 } // getNumBits()
 
-string InBitStream::getbitSequence()
+string InBitStream::getbitSequence() const
 {
     return bitSequence;
+
 } // getbitSequence()
 
-bool InBitStream::isOpen()
+bool InBitStream::isOpen() const
 {
     return inFile.is_open();
+
 } // isOpen()
 
 void InBitStream::open(string& fileName)
@@ -92,12 +101,23 @@ void InBitStream::close()
     inFile.close();
 } // close()
 
-void InBitStream::setNumBits()
+void InBitStream::setNumBytes()
 {
     char c = '\0';
-    inFile.seekg(0);    // First char in the file is the number of bits 
+    inFile.seekg(0);    // 0th char byte in the file is the number of digits for the number of bytes 
     inFile.get(c);
-    numBits = c - '0';  // convert char to int
+    numDigitsforBytes = c - '0';  // convert char to int
+
+    inFile.seekg(1);    // 1st char byte in the file
+    int temp = 0;
+    for (int i = 0; i < numDigitsforBytes; i++)
+    {
+        inFile.get(c);  // Get next char byte
+        temp = c - '0';
+        temp *= pow(10, (numDigitsforBytes - i - 1));
+        numBytes += temp;
+    }
+    
 
 
 } // setNumBits()
@@ -106,12 +126,13 @@ void InBitStream::setNumBits()
 void InBitStream::setbitSequence()
 {
     char c;
-    bool bitValue;
+    bool bitValue = false;
+    int bitCounter = 0;
 
     // Set the position of the next character to be extracted 
     // from the input stream to the second character
     inFile.seekg(1);    
-    while(inFile.get(c))
+    while(inFile.get(c) && bitCounter < numBytes)
     {
         // Use bitwise operators to shift bits and extract them
         // from the char c
@@ -127,5 +148,7 @@ void InBitStream::setbitSequence()
                 bitSequence += '0';
             }
         }
+        
+        bitCounter++;
     }
 } // setbitSequence()
