@@ -34,5 +34,5 @@ class OutBitStream
     void open(string& fileName);
     void close();
     void setNumBytes(int num);
-    bool writeBitSequence(string& sequence);
+    void writeBitSequence(string& sequence);
 };

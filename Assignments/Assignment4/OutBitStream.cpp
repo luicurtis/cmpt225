@@ -75,15 +75,18 @@ void OutBitStream::setNumBytes(int num)
 
 } // setNumBytes(int)
 
-bool OutBitStream::writeBitSequence(string& sequence)
+void OutBitStream::writeBitSequence(string& sequence)
 {
     // Write number of bytes of the binary sequence
+    // This is the first byte written to the file
     outFile << numBytes;
     
 
     // TODO:
+    // - write code to inset 
     // - need to figure out how to compress the huffman tree
-
+    
+    
 }
 
 

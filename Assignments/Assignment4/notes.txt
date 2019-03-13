@@ -12,6 +12,9 @@ Input/output streams
 	- char is 8 bits
 	- for loop starts at 7
 	- every loop it's going to shift right i bits and bitwise AND with that bit
+- https://www.youtube.com/watch?v=z2Q1cvotLCk
+	- REALLY GOOD YOUTUBE VID
+- https://stackoverflow.com/questions/8461126/how-to-create-a-byte-out-of-8-bool-values-and-vice-versa
 
 - http://courses.cs.vt.edu/~cs2604/fall00/binio.html
 - http://www.cplusplus.com/forum/general/21018/

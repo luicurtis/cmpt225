@@ -37,6 +37,8 @@ InBitStream::InBitStream(string& fileName)
         char c;
         bool bitValue = false;
         int bitCounter = 0;
+        
+        this->setNumBytes();
 
         while(inFile.get(c) && bitCounter < numBytes)
         {
@@ -117,8 +119,6 @@ void InBitStream::setNumBytes()
         temp *= pow(10, (numDigitsforBytes - i - 1));
         numBytes += temp;
     }
-    
-
 
 } // setNumBits()
 
