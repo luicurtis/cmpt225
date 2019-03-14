@@ -19,7 +19,7 @@ using namespace std;
 class BitStream
 {
   private:
-    int sizeHuffman;    // # of bytes written in this file representing the Huffman Tree
+    char* sizeHuffman;    // # of bytes written in this file representing the Huffman Tree
     string biSequence;
     // Maybe a huff tree object or something
 
@@ -34,7 +34,7 @@ class BitStream
     // - Need to add huffman tree object to setData
     
     void setData(int numBytes, string sequence); 
-    void save(ofstream of);
+    void save(ofstream& of);
     void writeData(string fileName);
     void readData(string fileName);
 };
