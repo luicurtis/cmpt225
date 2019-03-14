@@ -1,8 +1,12 @@
 Building Tree:
 - use a priority queue to have the lowest weights in front
 
+Frequency Table:
+- https://stackoverflow.com/questions/27727348/frequency-table-in-c
+
 Using the application:
 - need to utilize reading command line arguments
+	- https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/
 
 Input/output streams
 - http://www.cplusplus.com/doc/tutorial/files/
