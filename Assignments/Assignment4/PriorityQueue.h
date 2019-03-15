@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include "Node.h"
+#include "EmptyDataCollectionException.h"
 
 using namespace std;
 
@@ -193,7 +194,7 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
         // Find place to insert node
         while (cur->next != NULL && cur->next->data < newElement)
         {
-                cur = cur->next;
+            cur = cur->next;
         }
 
         newNode->next = cur->next;

@@ -4,7 +4,7 @@
  * Class Definition: Node class in which the data is of ElementType data type.
  *                   Designed and implemented as a non-ADT.
  *
- * Created on: 	February 16 2019
+ * Created on: 	March 2019
  * Author: 		Inspired from Lab4 source files and modified by Curtis Lui. 
  * 
  */

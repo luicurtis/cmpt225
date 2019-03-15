@@ -30,6 +30,3 @@ void FrequencyCounter::incrementFrequency()
 {
     frequency++;
 } // incrementFrequency()
-
-// TODO
-// - add comparison operator
