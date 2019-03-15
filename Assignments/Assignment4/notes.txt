@@ -20,7 +20,6 @@ Input/output streams
 - https://www.youtube.com/watch?v=z2Q1cvotLCk
 	- REALLY GOOD YOUTUBE VID
 - https://stackoverflow.com/questions/8461126/how-to-create-a-byte-out-of-8-bool-values-and-vice-versa
-
 - http://courses.cs.vt.edu/~cs2604/fall00/binio.html
 - http://www.cplusplus.com/forum/general/21018/
 - https://stackoverflow.com/questions/33457974/outputting-a-binary-string-to-a-binary-file-in-c
@@ -28,3 +27,41 @@ Input/output streams
 
 Compressed File
 - Needs to contain the # of bytes as the first thing in the file
+	- this number refers to the number of bytes of the huffman tree
+
+
+TODO:
+- Convert algorithm for frequency counter into a class
+- Create huffman tree class
+	Private:
+		BinaryNode root pointer
+		weight
+
+
+Overload operator:
+    // Operator overload
+    // Description: Less than or equals operator. Compares "this" BinaryNode object with "rhs" BinaryNode object.
+	//              Returns true if frequency of "this" BinaryNode object is < frequency of "rhs" BinaryNode object.
+    //              If weights are the same, return true.
+    bool operator<=(const BinaryNode &rhs) const;
+
+	// Operator overload
+	// Description: Less than or equals operator. Compares "this" BinaryNode object with "rhs" BinaryNode object.
+	//              Returns true if frequency of "this" BinaryNode object is < frequency of "rhs" BinaryNode object.
+	//              If weights are the same, return true. Else return false.
+	bool BinaryNode::operator<=(const BinaryNode &rhs) const
+	{
+		if (this->frequency < rhs.getFrequency())
+		{
+			return true;
+		}
+		else if(this->frequency == rhs.getFrequency())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}

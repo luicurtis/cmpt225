@@ -19,22 +19,19 @@ using namespace std;
 BinaryNode::BinaryNode()
 {
     c = '\0';
-    weight = 0;
     left = NULL;
     right = NULL;
 
 } // Default Constructor
 
-BinaryNode::BinaryNode(int weight, char c)
+BinaryNode::BinaryNode(char c)
 {
-    this->weight = weight;
     this->c = c;
 
 } // BinaryNode(int, char)
 
-BinaryNode::BinaryNode(int weight, char c, BinaryNode *left, BinaryNode *right)
+BinaryNode::BinaryNode(char c, BinaryNode *left, BinaryNode *right)
 {
-    this->weight = weight;
     this->c = c;
     this->left = left;
     this->right = right;
@@ -47,12 +44,6 @@ int BinaryNode::getChar() const
     return c;
 
 } // getChar()
-
-int BinaryNode::getWeight() const
-{
-    return weight;
-
-} // getFrequency()
 
 BinaryNode *BinaryNode::getLeft() const
 {
@@ -73,11 +64,6 @@ void BinaryNode::setChar(char c)
 
 } // setChar()
 
-void BinaryNode::setWeight(int weight)
-{
-    this->weight = weight;
-
-} // setFrequency()
 void BinaryNode::setLeft(BinaryNode *left)
 {
     this->left = left;
@@ -108,24 +94,3 @@ bool BinaryNode::hasRight() const
     return (right != NULL);
 
 } // hasRight()
-
-// Operator overload
-// Description: Less than or equals operator. Compares "this" BinaryNode object with "rhs" BinaryNode object.
-//              Returns true if weight of "this" BinaryNode object is < weight of "rhs" BinaryNode object.
-//              If weights are the same, return true. Else return false.
-bool BinaryNode::operator<=(const BinaryNode &rhs) const
-{
-    if (this->weight < rhs.getWeight())
-    {
-        return true;
-    }
-    else if(this->weight == rhs.getWeight())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-}

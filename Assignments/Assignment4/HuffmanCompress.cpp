@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        // Create frequency table utilizing extended ASCII representation
+        // Create frequency table utilizing extended ASCII representation       ** CONVERT THIS INTO A CLASS **
         int count[NUM_CHAR_POSSIBILITIES] = {0};
         ifstream inFile(nameFiletoCompress);
         
