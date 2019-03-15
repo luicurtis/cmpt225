@@ -11,13 +11,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cstring>
 #include <cstdlib>
 #include <cstdio>
 #include "BitStream.h"
 #include "FrequencyCounter.h"
 
-const int NUM_POSSIBILITIES = 256;
+const int NUM_CHAR_POSSIBILITIES = 256;
+const string COMPRESS = "-c";
+const string DECOMPRESS = "-d";
+const string EXTENSION_HUFF = "huff";
 
 int main(int argc, char *argv[])
 {
@@ -27,21 +29,32 @@ int main(int argc, char *argv[])
         cout << "Terminating program." << endl;
         return 1;
     }
+
+    string operation = argv[1];
     
-
-    if (strcmp(argv[1], "-c")) 
+    // If user wants to compress a file
+    if (operation == COMPRESS) 
     {
+        string nameFiletoCompress = argv[2];
+        string nameCompressedfile = argv[3]; 
+
+        // Need if output file ends in .huff
+        // Find the postition where the start of the file extension is
         int i = 0;
-        while(argv[2][i] != '.' && i < strlen(argv[2]))
+        int k = 0;
+        int extensionLength = nameCompressedfile.length() - 1 - 4;
+        string extension = nameCompressedfile.substr(extensionLength, nameCompressedfile.length() - 1);
+
+        if(extension != "huff")
         {
-            i++;
+            cout << "ERROR: The output file must have the file extension .huff" << endl;
+            cout << "Terminating program." << endl;
+            return 1;
         }
-        char * extension;
 
-        // need to check if text file ends in .txt and huff file ends in .huff
-
-        FrequencyCounter fC[NUM_POSSIBILITIES];
-        ifstream inFile(argv[2]);
+        // Create frequency table
+        FrequencyCounter fC[NUM_CHAR_POSSIBILITIES];
+        ifstream inFile(nameFiletoCompress);
         
         while (!inFile.eof())
         {
