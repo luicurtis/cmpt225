@@ -16,17 +16,21 @@
 
 using namespace std;
 
-FrequencyCounter::FrequencyCounter() : frequency(0)
+FrequencyCounter::FrequencyCounter()
 {
-
+    for (int i = 0; i < NUM_CHAR_POSSIBILITIES; i++)
+    {
+        count[i] = 0;
+    }
+    
 } // Default constructor
 
-int FrequencyCounter::getFrequency() const
+int* FrequencyCounter::getTable()
 {
-    return frequency;
-} // getFrequency()
+    return count;
+} // getTable()
 
-void FrequencyCounter::incrementFrequency()
+void FrequencyCounter::countFrequency(string &nameofFile)
 {
-    frequency++;
+    // TODO 
 } // incrementFrequency()

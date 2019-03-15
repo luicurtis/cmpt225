@@ -16,7 +16,7 @@
 #include "BitStream.h"
 #include "FrequencyCounter.h"
 
-const int NUM_CHAR_POSSIBILITIES = 256;
+
 const string COMPRESS = "-c";
 const string DECOMPRESS = "-d";
 const string EXTENSION_HUFF = "huff";

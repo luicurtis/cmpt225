@@ -11,15 +11,20 @@
 
 #pragma once
 
+#include <string>
+
+using namespace std;
+
+const int NUM_CHAR_POSSIBILITIES = 256;
 
 class FrequencyCounter
 {
-    private:
-        int frequency;
+  private:
+    int count[NUM_CHAR_POSSIBILITIES];
 
-    public:
+  public:
     FrequencyCounter();
 
-    int getFrequency() const;
-    void incrementFrequency();
+    int* getTable();
+    void countFrequency(string &nameofFile);
 };

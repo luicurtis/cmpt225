@@ -36,6 +36,10 @@ TODO:
 	Private:
 		BinaryNode root pointer
 		weight
+	Public:
+		comparison operator to compare weights
+
+- 
 
 
 Overload operator:
