@@ -13,7 +13,8 @@
 
 #include <iostream>
 #include "Node.h"
-#include "EmptyDataCollectionException.h"
+
+using namespace std;
 
 template <class T>
 class PriorityQueue

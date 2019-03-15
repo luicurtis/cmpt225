@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        // Create frequency table
-        FrequencyCounter fC[NUM_CHAR_POSSIBILITIES];
+        // Create frequency table utilizing extended ASCII representation
+        int count[NUM_CHAR_POSSIBILITIES] = {0};
         ifstream inFile(nameFiletoCompress);
         
         while (!inFile.eof())
@@ -64,8 +64,9 @@ int main(int argc, char *argv[])
             {
                 break;
             }
-            // Use ASCII representation to keep track of the frequency of the character
-            fC[(unsigned char)c].incrementFrequency();  
+            // Use extended ASCII representation to keep track of the frequency of the character
+            // unsigned char cast becuase we want numbers from 0 to 255
+            count[(unsigned char)c]++;  // Increment counter of that character represented in ASCII
         }
 
     }

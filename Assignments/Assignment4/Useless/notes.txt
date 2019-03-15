@@ -3,6 +3,7 @@ Building Tree:
 
 Frequency Table:
 - https://stackoverflow.com/questions/27727348/frequency-table-in-c
+- https://stackoverflow.com/questions/29974332/read-through-chars-in-a-file-and-count-how-many-individual-letters-there-are-c
 
 Using the application:
 - need to utilize reading command line arguments
