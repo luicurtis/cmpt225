@@ -1,7 +1,7 @@
 Building Tree:
 - use a priority queue to have the lowest weights in front
 - https://www.dreamincode.net/forums/blog/324/entry-3150-an-in-depth-look-at-huffman-encoding/
-
+	- answer key lul
 Frequency Table:
 - https://stackoverflow.com/questions/27727348/frequency-table-in-c
 - https://stackoverflow.com/questions/29974332/read-through-chars-in-a-file-and-count-how-many-individual-letters-there-are-c
@@ -25,7 +25,8 @@ Input/output streams
 - http://www.cplusplus.com/forum/general/21018/
 - https://stackoverflow.com/questions/33457974/outputting-a-binary-string-to-a-binary-file-in-c
 - http://www.eecs.umich.edu/courses/eecs380/HANDOUTS/cppBinaryFileIO-2.html
-
+- https://ubuntuforums.org/showthread.php?t=827161
+	- reading binary file into integer
 Compressed File
 - Needs to contain the # of bytes as the first thing in the file
 	- this number refers to the number of bytes of the huffman tree

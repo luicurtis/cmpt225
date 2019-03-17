@@ -25,6 +25,7 @@ class FrequencyCounter
   public:
     FrequencyCounter();
 
-    int* getTable();
+    int getFrequency(int index) const;
     bool countFrequency(string &nameofFile);
+    void insertFromfile(char c, int frequency);
 };

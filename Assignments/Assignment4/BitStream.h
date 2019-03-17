@@ -13,16 +13,16 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
+#include "FrequencyCounter.h"
 
 using namespace std;
 
 class BitStream
 {
   private:
-    char* sizeHuffman;    // # of bytes written in this file representing the Huffman Tree
-    string biSequence;
-    // Maybe a huff tree object or something
-
+    int sizeHuffman;      // # of bytes written in this file representing the Huffman Tree
+    string biSequence;    // Binary Sequence to traverse tree from binary file
+    FrequencyCounter FC;  // Frequency table from binary file, represents the Huffman tree
 
   public:
     BitStream();
@@ -33,8 +33,9 @@ class BitStream
     // - getter for huffman tree
     // - Need to add huffman tree object to setData
     
-    void setData(int numBytes, string sequence); 
+    void setData(int numBytes, string sequence, FrequencyCounter FC); 
     void save(ofstream& of);
     void writeData(string fileName);
     void readData(string fileName);
-};
+
+}; // End of BitStream

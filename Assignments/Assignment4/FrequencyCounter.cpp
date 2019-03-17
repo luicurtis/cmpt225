@@ -26,9 +26,9 @@ FrequencyCounter::FrequencyCounter()
 
 } // Default constructor
 
-int* FrequencyCounter::getTable()
+int FrequencyCounter::getFrequency(int index) const
 {
-    return count;
+    return count[index];
 
 } // getTable()
 
@@ -58,3 +58,9 @@ bool FrequencyCounter::countFrequency(string &nameofFile)
     return false;
     
 } // countFrequency(string&)
+
+void FrequencyCounter::insertFromfile(char c, int frequency)
+{
+    count[(unsigned char)c] = frequency; 
+
+} // insertFromfile(char, int)

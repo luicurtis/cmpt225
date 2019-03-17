@@ -28,4 +28,5 @@ class HuffmanCode
 
     string *getCode();
     void encode(BinaryNode *root, string subCode);
-};
+
+};  // End of HuffmanCode

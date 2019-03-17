@@ -25,7 +25,7 @@ const int SIZEOFBYTE = 8;
 // TODO
 // - Need to add huffman tree into all functions
 
-BitStream::BitStream() : sizeHuffman(NULL), biSequence("\0")
+BitStream::BitStream() : sizeHuffman(0), biSequence("\0"), FC()
 {
 
 } // Constructor
@@ -36,10 +36,11 @@ string BitStream::getSequence() const
 
 } // getSequence
 
-void BitStream::setData(int numBytes, string sequence)
+void BitStream::setData(int numBytes, string sequence, FrequencyCounter FC)
 {
-    sprintf(sizeHuffman, "%d", numBytes);
+    sizeHuffman = numBytes;
     biSequence = sequence;
+    this->FC = FC;
 
 } // setData(int, string)
 
@@ -48,7 +49,17 @@ void BitStream::save(ofstream& of)
     // Write number of bytes for the huffman tree
     of.write((char*) &sizeHuffman, sizeof(sizeHuffman));
 
-    // write the huffman tree into  binary file
+    // Write frequency table into file
+    for (int i = 0; i < NUM_CHAR_POSSIBILITIES; i++)
+    {
+        int frequency = FC.getFrequency(i);
+        if (frequency > 0)
+        {
+            unsigned char character = i;
+            of.write((char*) &character, sizeof(unsigned char));
+            of.write((char*) &frequency, sizeof(int));
+        }
+    }
 
     // Write the binary sequence into binary file
     int i = 0;
@@ -58,13 +69,14 @@ void BitStream::save(ofstream& of)
         bool bits[SIZEOFBYTE];
         while (j < SIZEOFBYTE)
         {
+            
             if (biSequence[i] == '1' && i < biSequence.length())
             {
                 bits[j] = 1;
             }
             else
             {
-                bits[j] = 0;
+                bits[j] = 0;    // Pad with 0's until length of biSequence or if bit is 0
             }
             j++;
             i++;
@@ -110,15 +122,17 @@ void BitStream::readData(string fileName)
     binaryFile.seekg(0, ios::beg); // Set the the pointer to the beg of file
 
     // Ready get the size of the huffman tree
-    binaryFile.read((char*) sizeHuffman, sizeof(sizeHuffman));
-
-    int sizeHuffInt = stoi(sizeHuffman);
+    binaryFile.read((char*)&sizeHuffman, sizeof(sizeHuffman));
 
     // read the huffman tree
-    // while(binaryFile.tellg() < sizeHuffInt)
-    // {
-    //     binaryFile.read()
-    // }
+    while(binaryFile.tellg() < sizeHuffman)
+    {
+        char c;
+        int frequency;
+        binaryFile.read((char*) &c, sizeof(c));                  // Read charater
+        binaryFile.read((char*) &frequency, sizeof(frequency));  // Read associated freqeuncy of that character
+        FC.insertFromfile(c, frequency);
+    }
     
     // Read the binary sequence
     bool bitValue = false;
@@ -143,6 +157,7 @@ void BitStream::readData(string fileName)
         }
     }
 
+    binaryFile.close();
 } // readData(string)
 
 

@@ -16,7 +16,6 @@
 #include "BitStream.h"
 #include "FrequencyCounter.h"
 
-
 const string COMPRESS = "-c";
 const string DECOMPRESS = "-d";
 const string EXTENSION_HUFF = "huff";
@@ -31,12 +30,12 @@ int main(int argc, char *argv[])
     }
 
     string operation = argv[1];
-    
+
     // If user wants to compress a file
-    if (operation == COMPRESS) 
+    if (operation == COMPRESS)
     {
         string nameFiletoCompress = argv[2];
-        string nameCompressedfile = argv[3]; 
+        string nameCompressedfile = argv[3];
 
         // Need if output file ends in .huff
         // Find the postition where the start of the file extension is
@@ -45,7 +44,7 @@ int main(int argc, char *argv[])
         int extensionLength = nameCompressedfile.length() - 1 - 4;
         string extension = nameCompressedfile.substr(extensionLength, nameCompressedfile.length() - 1);
 
-        if(extension != "huff")
+        if (extension != EXTENSION_HUFF)
         {
             cout << "ERROR: The output file must have the file extension .huff" << endl;
             cout << "Terminating program." << endl;
@@ -60,11 +59,8 @@ int main(int argc, char *argv[])
         {
             return 3;
         }
-
-        
-
     }
-    else if (strcmp(argv[1], "-d")) 
+    else if (strcmp(argv[1], "-d"))
     {
         // need to check if text file ends in .txt and huff file ends in .huff
     }
