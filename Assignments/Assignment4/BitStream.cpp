@@ -25,7 +25,7 @@ const int SIZEOFBYTE = 8;
 // TODO
 // - Need to add huffman tree into all functions
 
-BitStream::BitStream() : sizeHuffman("\0"), biSequence("\0")
+BitStream::BitStream() : sizeHuffman(NULL), biSequence("\0")
 {
 
 } // Constructor

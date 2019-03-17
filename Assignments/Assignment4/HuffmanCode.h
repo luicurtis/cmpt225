@@ -20,12 +20,12 @@ const int NUM_CHAR_POSSIBILITIES = 256;
 
 class HuffmanCode
 {
-    private:
-        string code[NUM_CHAR_POSSIBILITIES];
-    
-    public:
+  private:
+    string code[NUM_CHAR_POSSIBILITIES];
+
+  public:
     HuffmanCode();
 
-    string* getCode();
+    string *getCode();
     void encode(BinaryNode *root, string subCode);
 };
