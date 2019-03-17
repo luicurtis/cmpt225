@@ -49,25 +49,19 @@ int main(int argc, char *argv[])
         {
             cout << "ERROR: The output file must have the file extension .huff" << endl;
             cout << "Terminating program." << endl;
-            return 1;
+            return 2;
         }
 
         // Create frequency table utilizing extended ASCII representation       ** CONVERT THIS INTO A CLASS **
-        int count[NUM_CHAR_POSSIBILITIES] = {0};
-        ifstream inFile(nameFiletoCompress);
-        
-        while (!inFile.eof())
+        FrequencyCounter freqCount;
+        bool error = false;
+        error = freqCount.countFrequency(nameFiletoCompress);
+        if (error)
         {
-            char c;
-            inFile.get(c);
-            if (c == EOF)
-            {
-                break;
-            }
-            // Use extended ASCII representation to keep track of the frequency of the character
-            // unsigned char cast becuase we want numbers from 0 to 255
-            count[(unsigned char)c]++;  // Increment counter of that character represented in ASCII
+            return 3;
         }
+
+        
 
     }
     else if (strcmp(argv[1], "-d")) 

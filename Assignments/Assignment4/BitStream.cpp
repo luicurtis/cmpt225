@@ -87,7 +87,7 @@ void BitStream::writeData(string fileName)
     fs.open(fileName, ios::out | ios::binary);
     if (!(fs.is_open()))
     {
-        cout << "ERROR: Cannot open the file to write to" << endl;
+        cout << "ERROR: Cannot open the file to write to." << endl;
     }
     else
     {

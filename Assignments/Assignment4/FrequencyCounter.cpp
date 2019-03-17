@@ -12,6 +12,7 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 #include "FrequencyCounter.h"
 
 using namespace std;
@@ -22,15 +23,38 @@ FrequencyCounter::FrequencyCounter()
     {
         count[i] = 0;
     }
-    
+
 } // Default constructor
 
 int* FrequencyCounter::getTable()
 {
     return count;
+
 } // getTable()
 
-void FrequencyCounter::countFrequency(string &nameofFile)
+bool FrequencyCounter::countFrequency(string &nameofFile)
 {
-    // TODO 
-} // incrementFrequency()
+    ifstream inFile(nameofFile, ios::in);
+
+    if (!(inFile.is_open()))
+    {
+        cout << "ERROR: Cannot open the file to read from." << endl;
+        return true;;
+    }
+        
+    while (!inFile.eof())
+    {
+        char c;
+        inFile.get(c);
+        if (c == EOF)
+        {
+            break;
+        }
+        // Use extended ASCII representation to keep track of the frequency of the character
+        // unsigned char cast becuase we want numbers from 0 to 255
+        count[(unsigned char)c]++;  // Increment counter of that character represented in ASCII
+    }
+
+    return false;
+    
+} // countFrequency(string&)

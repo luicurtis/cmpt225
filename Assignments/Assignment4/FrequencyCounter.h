@@ -26,5 +26,5 @@ class FrequencyCounter
     FrequencyCounter();
 
     int* getTable();
-    void countFrequency(string &nameofFile);
+    bool countFrequency(string &nameofFile);
 };
