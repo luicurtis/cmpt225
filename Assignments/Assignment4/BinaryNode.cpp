@@ -27,6 +27,8 @@ BinaryNode::BinaryNode()
 BinaryNode::BinaryNode(char c)
 {
     this->c = c;
+    this->left = NULL;
+    this->right = NULL;
 
 } // BinaryNode(int, char)
 

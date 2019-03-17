@@ -1,7 +1,7 @@
 /*
  * BinaryNode.h
  *
- * Class Definition: Binary BinaryNode class in which the data is of ElementType data type.
+ * Class Definition: Binary Node class in which the data is of ElementType data type.
  *                   Designed and implemented as a non-ADT.
  *
  * Created on: 	March 2019
@@ -30,7 +30,6 @@ class BinaryNode
 
     // Getters
     int getChar() const;
-    int getFrequency() const;
     BinaryNode *getLeft() const;
     BinaryNode *getRight() const;
 

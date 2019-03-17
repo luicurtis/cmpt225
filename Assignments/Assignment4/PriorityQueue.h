@@ -5,7 +5,7 @@
  * Class Invariant: The elements stored in this Priority Queue are always sorted.
  *
  * Author: Inspired by Frank M. Carrano and Tim Henry (textbook).
- * Modified: February 2019
+ * Modified: March 2019, Curtis Lui
  *
  */
 
