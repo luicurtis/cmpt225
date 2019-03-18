@@ -192,7 +192,7 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
         Node<T> *prev = NULL;
 
         // Find place to insert node
-        while (cur->next != NULL && cur->next->data < newElement)
+        while (cur->next != NULL && cur->next->data <= newElement)
         {
             cur = cur->next;
         }

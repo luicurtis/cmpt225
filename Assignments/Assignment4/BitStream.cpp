@@ -91,6 +91,7 @@ void BitStream::save(ofstream& of)
         }
         of.write((char*) &byte, sizeof(byte));
     }
+
 } // save(ofstream)
 
 void BitStream::writeData(string fileName)

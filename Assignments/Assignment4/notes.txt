@@ -27,6 +27,7 @@ Input/output streams
 - http://www.eecs.umich.edu/courses/eecs380/HANDOUTS/cppBinaryFileIO-2.html
 - https://ubuntuforums.org/showthread.php?t=827161
 	- reading binary file into integer
+
 Compressed File
 - Needs to contain the # of bytes as the first thing in the file
 	- this number refers to the number of bytes of the huffman tree

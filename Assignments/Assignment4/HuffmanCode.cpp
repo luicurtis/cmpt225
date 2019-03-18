@@ -24,9 +24,9 @@ HuffmanCode::HuffmanCode()
 
 } // Default constructor
 
-string* HuffmanCode::getCode()
+string HuffmanCode::getCode(char c)
 {
-    return code;
+    return code[(unsigned char)c];
 } // getCode()
 
 void HuffmanCode::encode(BinaryNode *root, string subCode)

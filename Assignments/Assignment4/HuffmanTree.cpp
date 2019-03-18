@@ -19,10 +19,20 @@
 
 using namespace std;
 
-HuffmanTree::HuffmanTree() : weight(0), root(NULL)
+HuffmanTree::HuffmanTree()
 {
+    weight = 0;
+    BinaryNode *newNode = new BinaryNode;
+    root = newNode;
 
 } // Default constructor
+
+HuffmanTree::HuffmanTree(const HuffmanTree &rhs)
+{
+    this->weight = rhs.getWeight();
+    this->root = rhs.getRoot();
+    
+} // Copy constructor
 
 HuffmanTree::HuffmanTree(char character, int frequency)
 {
@@ -31,7 +41,7 @@ HuffmanTree::HuffmanTree(char character, int frequency)
     root = newNode;
     weight = frequency;
 
-} // HuffmanTree(char)
+} // HuffmanTree(char, int)
 
 HuffmanTree::~HuffmanTree()
 {

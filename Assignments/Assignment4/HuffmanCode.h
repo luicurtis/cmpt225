@@ -26,7 +26,7 @@ class HuffmanCode
   public:
     HuffmanCode();
 
-    string *getCode();
+    string getCode(char c);
     void encode(BinaryNode *root, string subCode);
 
 };  // End of HuffmanCode

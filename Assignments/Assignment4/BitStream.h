@@ -29,9 +29,6 @@ class BitStream
     // ~BitStream(); // Is destructor necessary??
 
     string getSequence() const;
-    // TODO
-    // - getter for huffman tree
-    // - Need to add huffman tree object to setData
     
     void setData(int numBytes, string sequence, FrequencyCounter FC); 
     void save(ofstream& of);

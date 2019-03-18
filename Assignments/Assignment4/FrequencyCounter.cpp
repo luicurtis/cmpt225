@@ -39,7 +39,7 @@ bool FrequencyCounter::countFrequency(string &nameofFile)
     if (!(inFile.is_open()))
     {
         cout << "ERROR: Cannot open the file to read from." << endl;
-        return true;;
+        return true;
     }
         
     while (!inFile.eof())
@@ -54,6 +54,8 @@ bool FrequencyCounter::countFrequency(string &nameofFile)
         // unsigned char cast becuase we want numbers from 0 to 255
         count[(unsigned char)c]++;  // Increment counter of that character represented in ASCII
     }
+
+    inFile.close();
 
     return false;
     

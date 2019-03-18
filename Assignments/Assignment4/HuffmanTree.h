@@ -27,11 +27,10 @@ class HuffmanTree
     BinaryNode *root;
 
   public:
-    HuffmanTree();
-    // Initializes one node
-    HuffmanTree(char character, int frequency);
+    HuffmanTree();  // Initializes one node
+     HuffmanTree(const HuffmanTree &rhs); // copy constructor
+    HuffmanTree(char character, int frequency); // Initializes one node
     ~HuffmanTree();
-    void RecursiveDelete(BinaryNode *root);
 
     int getWeight() const;
     BinaryNode *getRoot() const;
@@ -44,4 +43,6 @@ class HuffmanTree
     //              If weights are the same, return true.
     bool operator<=(const HuffmanTree &rhs) const;
 
+    // Helper function
+    void RecursiveDelete(BinaryNode *root);
 }; // End of HuffmanTree
