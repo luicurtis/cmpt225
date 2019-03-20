@@ -15,8 +15,9 @@
 #include <cstdlib> // NULL
 #include <string>
 #include "BinaryNode.h"
+#include "FrequencyCounter.h"
 
-const int NUM_CHAR_POSSIBILITIES = 256;
+//const int NUM_CHAR_POSSIBILITIES = 256;
 
 class HuffmanCode
 {

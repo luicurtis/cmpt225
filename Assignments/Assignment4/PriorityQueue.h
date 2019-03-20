@@ -177,7 +177,7 @@ bool PriorityQueue<T>::enqueue(const T &newElement)
     newNode->data = newElement;
     
     // If queue is empty
-    if (head == NULL || newElement < head->data)
+    if (head == NULL || newElement <= head->data)
     {
         newNode->next = head;
         head = newNode;
