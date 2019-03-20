@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         // Find the postition where the start of the file extension is
         int i = 0;
         int k = 0;
-        int extensionLength = nameCompressedfile.length() - 1 - 4;
+        int extensionLength = nameCompressedfile.length() - 4;
         string extension = nameCompressedfile.substr(extensionLength, nameCompressedfile.length() - 1);
 
         if (extension != EXTENSION_HUFF)
@@ -133,12 +133,12 @@ int main(int argc, char *argv[])
         // Find the postition where the start of the file extension is
         int i = 0;
         int k = 0;
-        int extensionLength = nameCompressedfile.length() - 1 - 4;
+        int extensionLength = nameCompressedfile.length() - 4;
         string extension = nameCompressedfile.substr(extensionLength, nameCompressedfile.length() - 1);
 
         if (extension != EXTENSION_HUFF)
         {
-            cout << "ERROR: The output file must have the file extension .huff" << endl;
+            cout << "ERROR: The input file must have the file extension .huff" << endl;
             cout << "Terminating program." << endl;
             return 4;
         }

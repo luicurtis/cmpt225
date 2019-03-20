@@ -1,7 +1,7 @@
-all: compress
+all: huff
 
-compress: HuffmanCompress.o PriorityQueue.h Node.h BinaryNode.o BitStream.o HuffmanTree.o HuffmanCode.o FrequencyCounter.o EmptyDataCollectionException.o
-	g++ -Wall -std=c++98 -o compress HuffmanCompress.o BinaryNode.o BitStream.o HuffmanTree.o HuffmanCode.o FrequencyCounter.o EmptyDataCollectionException.o
+huff: HuffmanCompress.o PriorityQueue.h Node.h BinaryNode.o BitStream.o HuffmanTree.o HuffmanCode.o FrequencyCounter.o EmptyDataCollectionException.o
+	g++ -Wall -std=c++98 -o huff HuffmanCompress.o BinaryNode.o BitStream.o HuffmanTree.o HuffmanCode.o FrequencyCounter.o EmptyDataCollectionException.o
 
 HuffmanCompress.o: HuffmanCompress.cpp
 	g++ -c HuffmanCompress.cpp
@@ -25,4 +25,4 @@ EmptyDataCollectionException.o: EmptyDataCollectionException.cpp EmptyDataCollec
 	g++ -c EmptyDataCollectionException.cpp
 
 clean:
-	rm -f compress *.o
+	rm -f huff *.o
