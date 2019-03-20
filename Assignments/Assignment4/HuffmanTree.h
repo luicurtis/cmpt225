@@ -28,7 +28,7 @@ class HuffmanTree
 
   public:
     HuffmanTree();  // Initializes one node
-     HuffmanTree(const HuffmanTree &rhs); // copy constructor
+    HuffmanTree(const HuffmanTree &rhs); // copy constructor
     HuffmanTree(char character, int frequency); // Initializes one node
     ~HuffmanTree();
 

@@ -9,6 +9,8 @@
  *
  */
 
+#pragma once
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -29,10 +31,11 @@ class BitStream
     // ~BitStream(); // Is destructor necessary??
 
     string getSequence() const;
+    FrequencyCounter& getFC();
     
     void setData(int numBytes, string sequence, FrequencyCounter FC); 
     void save(ofstream& of);
     void writeData(string fileName);
     void readData(string fileName);
-
+    
 }; // End of BitStream

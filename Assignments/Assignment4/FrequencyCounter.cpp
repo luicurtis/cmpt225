@@ -9,8 +9,6 @@
  *
  */
 
-#pragma once
-
 #include <iostream>
 #include <fstream>
 #include "FrequencyCounter.h"
@@ -25,6 +23,14 @@ FrequencyCounter::FrequencyCounter()
     }
 
 } // Default constructor
+
+FrequencyCounter::FrequencyCounter(FrequencyCounter &toCopy)
+{
+    for (int i = 0; i < NUM_CHAR_POSSIBILITIES; i++)
+    {
+        count[i] = toCopy.getFrequency(i);
+    }
+} // Copy constructor
 
 int FrequencyCounter::getFrequency(int index) const
 {

@@ -36,6 +36,11 @@ string BitStream::getSequence() const
 
 } // getSequence
 
+FrequencyCounter& BitStream::getFC()
+{
+    return FC;
+} // getFC()
+
 void BitStream::setData(int numBytes, string sequence, FrequencyCounter FC)
 {
     sizeHuffman = numBytes;
@@ -160,6 +165,3 @@ void BitStream::readData(string fileName)
 
     binaryFile.close();
 } // readData(string)
-
-
-

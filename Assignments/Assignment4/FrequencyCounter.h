@@ -24,6 +24,7 @@ class FrequencyCounter
 
   public:
     FrequencyCounter();
+    FrequencyCounter(FrequencyCounter &toCopy);
 
     int getFrequency(int index) const;
     bool countFrequency(string &nameofFile);

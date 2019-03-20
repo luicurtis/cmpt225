@@ -18,6 +18,7 @@
 #include "PriorityQueue.h"
 #include "HuffmanCode.h"
 #include "HuffmanTree.h"
+#include "BinaryNode.h"
 
 const string COMPRESS = "-c";
 const string DECOMPRESS = "-d";
@@ -123,9 +124,98 @@ int main(int argc, char *argv[])
             cout << "*** Size of compressed file > size of source file ***" << endl;
         }
     }
-    else if (strcmp(argv[1], "-d"))
+    else if (operation == DECOMPRESS)
     {
-        // need to check if text file ends in .txt and huff file ends in .huff
+        string nameCompressedfile = argv[2];
+        string nameFiletoDecompress = argv[3];
+
+        // need to check if compressed file ends in .huff
+        // Find the postition where the start of the file extension is
+        int i = 0;
+        int k = 0;
+        int extensionLength = nameCompressedfile.length() - 1 - 4;
+        string extension = nameCompressedfile.substr(extensionLength, nameCompressedfile.length() - 1);
+
+        if (extension != EXTENSION_HUFF)
+        {
+            cout << "ERROR: The output file must have the file extension .huff" << endl;
+            cout << "Terminating program." << endl;
+            return 4;
+        }
+
+        BitStream stream;
+        stream.readData(nameCompressedfile);
+
+        // Get the frequency table
+        FrequencyCounter freqCount(stream.getFC());
+
+        // Rebuild the huffman's tree with Frequency Counter
+        // Create single node trees of characters with corresponding frequency
+        // that appear in the file and insert into the Priority Queue
+        PriorityQueue<HuffmanTree> treeList;
+        int numLeaves = 0;
+        for (int i = 0; i < NUM_CHAR_POSSIBILITIES; i++)
+        {
+            if (freqCount.getFrequency(i) > 0)
+            {
+                numLeaves++;
+
+                // Create a signle node tree and insert into the PQueue
+                HuffmanTree newTree((char)i, freqCount.getFrequency(i));
+                treeList.enqueue(newTree);
+            }
+        }
+
+        // Deqeue two trees from the PQueue and combine them.
+        // Reinsert them into the PQueue until PQueue has 1 element.
+        while (treeList.getElementCount() > 1)
+        {
+            HuffmanTree combinedTree;
+
+            HuffmanTree tree1(treeList.peek());
+            treeList.dequeue();
+            HuffmanTree tree2(treeList.peek());
+            treeList.dequeue();
+
+            combinedTree.combine(tree1, tree2);
+            treeList.enqueue(combinedTree);
+        }
+
+        HuffmanTree huffTree(treeList.peek());
+        BinaryNode* treePtr;
+        treePtr = huffTree.getRoot();
+
+        // Decode the huffman code
+        string huffCode = stream.getSequence();
+        string message;
+        
+        for (int i = 0; i < huffCode.length(); i++)
+        {
+            if (treePtr->isLeaf())
+            {
+                message += treePtr->getChar();
+            }
+            if (huffCode[i] == '0')
+            {
+                treePtr = treePtr->getLeft();
+            }
+            else
+            {
+                treePtr = treePtr->getRight();
+            }
+        }
+
+        // Write message to file
+        ofstream fs;
+        fs.open(nameFiletoDecompress, ios::out);
+        fs << message;
+
+    }
+    else
+    {
+        cout << "ERROR: Not a valid input" << endl;
+        cout << "Terminating program." << endl;
+        return 5;
     }
 
     return 0;
