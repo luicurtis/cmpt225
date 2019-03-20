@@ -15,6 +15,8 @@
 #include "HuffmanCode.h"
 #include "BinaryNode.h"
 
+// Desc: Default constructor
+// Post: Initialized code elements
 HuffmanCode::HuffmanCode()
 {
     for (int i = 0; i < NUM_CHAR_POSSIBILITIES; i++)
@@ -24,11 +26,16 @@ HuffmanCode::HuffmanCode()
 
 } // Default constructor
 
+// Desc: Returns the huffman code for the given character
 string HuffmanCode::getCode(char c)
 {
     return code[(unsigned char)c];
 } // getCode()
 
+
+// Desc: Creates the Huffman code for all elements of the tree
+// Post: Code elements are set to the binary string that represents the 
+//       huffman code for that specific character
 void HuffmanCode::encode(BinaryNode *root, string subCode)
 {
     // Depth First Traverse the tree to visit each leaf and get the

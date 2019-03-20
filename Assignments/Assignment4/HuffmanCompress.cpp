@@ -24,7 +24,10 @@ const string COMPRESS = "-c";
 const string DECOMPRESS = "-d";
 const string EXTENSION_HUFF = "huff";
 
+// Desc: Generates binary seqeuence that will be written to file
 string generateSequence(string &nameofFile, HuffmanCode code);
+
+// Desc: Determines size of given file
 int sizeofFile(string &fileName);
 
 int main(int argc, char *argv[])
@@ -221,6 +224,7 @@ int main(int argc, char *argv[])
     return 0;
 } // main()
 
+// Desc: Generates binary seqeuence that will be written to file
 string generateSequence(string &nameofFile, HuffmanCode code)
 {
     string biSequence = "\0";
@@ -248,8 +252,10 @@ string generateSequence(string &nameofFile, HuffmanCode code)
     inFile.close();
     
     return biSequence;
-}
 
+} // generateSequence(string &, HuffmanCode)
+
+// Desc: Determines size of given file
 int sizeofFile(string &fileName)
 {
     ifstream file;
@@ -264,4 +270,5 @@ int sizeofFile(string &fileName)
     file.close();
 
     return (end - beg);
-}
+    
+} // sizeofFile(string &)

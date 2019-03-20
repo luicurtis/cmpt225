@@ -16,6 +16,8 @@
 using namespace std;
 
  // Constructors
+// Desc: Default Constructor
+// Post: left and right is set to NULL
 BinaryNode::BinaryNode()
 {
     c = '\0';
@@ -24,6 +26,8 @@ BinaryNode::BinaryNode()
 
 } // Default Constructor
 
+// Desc: Constructor
+// Post: Sets this->c to c and left and right to NULL
 BinaryNode::BinaryNode(char c)
 {
     this->c = c;
@@ -32,6 +36,8 @@ BinaryNode::BinaryNode(char c)
 
 } // BinaryNode(int, char)
 
+// Desc: Constructor
+// Post: Sets this->c to c and this->left to left and this->right to right
 BinaryNode::BinaryNode(char c, BinaryNode *left, BinaryNode *right)
 {
     this->c = c;
@@ -41,37 +47,47 @@ BinaryNode::BinaryNode(char c, BinaryNode *left, BinaryNode *right)
 } // BinaryNode(int, char, BinaryNode, BinaryNode)
 
 // Getters
+// Desc: Returns the c at the node
 int BinaryNode::getChar() const
 {
     return c;
 
 } // getChar()
 
+// Desc: Returns the root of the left subtree
 BinaryNode *BinaryNode::getLeft() const
 {
     return left;
 
 } // getLeft() 
 
+// Desc: Returns the root of the right subtree
 BinaryNode *BinaryNode::getRight() const
 {
     return right;
 
 } // getRight() 
 
-// Setters
+
+// Desc: Sets the c at the node
+// Post: this->c = c
 void BinaryNode::setChar(char c)
 {
     this->c = c;
 
 } // setChar()
 
+
+// Desc: Sets the left BinaryNode pointer to point at a BinaryNode
+// Post: this->left = left
 void BinaryNode::setLeft(BinaryNode *left)
 {
     this->left = left;
 
 } // setLeft(BinaryNode)
 
+// Desc: Sets the right BinaryNode pointer to point at a BinaryNode
+// Post: this->right = right
 void BinaryNode::setRight(BinaryNode *right)
 {
     this->right = right;
@@ -79,18 +95,22 @@ void BinaryNode::setRight(BinaryNode *right)
 } // setRight(BinaryNode)
 
 // Boolean helper functions
+// Boolean helper functions
+// Desc: Returns true if the node has no children, else false
 bool BinaryNode::isLeaf() const
 {
     return (left == NULL && right == NULL);
 
 } // isLeaf()
 
+// Desc: Returns true if the node has a left subtree, else false
 bool BinaryNode::hasLeft() const
 {
     return (left != NULL);
 
 } // hasLeft()
 
+// Desc: Returns true if the node has a right subtree, else false
 bool BinaryNode::hasRight() const
 {
     return (right != NULL);

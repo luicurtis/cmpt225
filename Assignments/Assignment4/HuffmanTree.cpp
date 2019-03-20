@@ -19,6 +19,8 @@
 
 using namespace std;
 
+// Desc: Deafult constructor
+// Post: Initializes one node and weight to 0
 HuffmanTree::HuffmanTree()
 {
     weight = 0;
@@ -27,6 +29,8 @@ HuffmanTree::HuffmanTree()
 
 } // Default constructor
 
+// Desc: Copy Constructor
+// Post: this will be identical to rhs
 HuffmanTree::HuffmanTree(const HuffmanTree &rhs)
 {
     this->weight = rhs.getWeight();
@@ -34,6 +38,8 @@ HuffmanTree::HuffmanTree(const HuffmanTree &rhs)
     
 } // Copy constructor
 
+// Desc: Constructor
+// Post: Initializes one node with given character and weight = frequency
 HuffmanTree::HuffmanTree(char character, int frequency)
 {
     BinaryNode *newNode = new BinaryNode;
@@ -43,34 +49,34 @@ HuffmanTree::HuffmanTree(char character, int frequency)
 
 } // HuffmanTree(char, int)
 
+// Desc: Destructor
+// Post: All nodes in the tree are deleted and weight is set to 0
 HuffmanTree::~HuffmanTree()
 {
     this->RecursiveDelete(root);
+    root = NULL;
+    weight = 0;
     
 } // Destructor
 
-void HuffmanTree::RecursiveDelete(BinaryNode *node)
-{
-    if(node)
-    {
-        RecursiveDelete(node->getLeft());
-        RecursiveDelete(node->getRight());
-        delete node;
-    }
-} // RecursiveDelete(BinaryNode*)
-
+// Desc: Returns the root of the tree
 int HuffmanTree::getWeight() const
 {
     return weight;
 
 } // getWeight()
 
+// Desc: Returns the root of the tree
 BinaryNode *HuffmanTree::getRoot() const
 {
     return root;
 
 } // getRoot()
 
+
+// Desc: Combines two Huffman trees
+// Post: Heavier subtree will be placed on the left subtree and 
+//       ligheter subtree on the right
 void HuffmanTree::combine(const HuffmanTree &huff1, const HuffmanTree &huff2)
 {
     // place the heavier subtree on the left
@@ -94,9 +100,9 @@ void HuffmanTree::combine(const HuffmanTree &huff1, const HuffmanTree &huff2)
 } // combine(const HuffmanTree, const HuffmanTree)
 
 // Operator overload
-// Description: Less than or equals operator. Compares "this" BinaryNode object with "rhs" BinaryNode object.
-//              Returns true if frequency of "this" BinaryNode object is <= frequency of "rhs" BinaryNode object.
-//              Else return false.
+// Desc: Less than or equals operator. Compares "this" BinaryNode object with "rhs" BinaryNode object.
+//       Returns true if frequency of "this" BinaryNode object is < frequency of "rhs" BinaryNode object.
+//       If weights are the same, return true.
 bool HuffmanTree::operator<=(const HuffmanTree &rhs) const
 {
     if (this->weight <= rhs.getWeight())
@@ -109,3 +115,14 @@ bool HuffmanTree::operator<=(const HuffmanTree &rhs) const
     }
 
 } // operator<=(const HuffmanTree)
+
+// Helper function for destructor
+void HuffmanTree::RecursiveDelete(BinaryNode *node)
+{
+    if(node)
+    {
+        RecursiveDelete(node->getLeft());
+        RecursiveDelete(node->getRight());
+        delete node;
+    }
+} // RecursiveDelete(BinaryNode*)

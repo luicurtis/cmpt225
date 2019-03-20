@@ -22,25 +22,30 @@ using namespace std;
 
 const int SIZEOFBYTE = 8;
 
-// TODO
-// - Need to add huffman tree into all functions
-
+// Desc: Default constructor
 BitStream::BitStream() : sizeHuffman(0), biSequence("\0"), FC()
 {
 
 } // Constructor
 
+// Desc: Returns the Binary sequence stored that is ready to be
+//       written or has been read
 string BitStream::getSequence() const
 {
     return biSequence;
 
 } // getSequence
 
+// Desc: Returns the frequency table
 FrequencyCounter& BitStream::getFC()
 {
     return FC;
 } // getFC()
 
+// Desc: Sets the data in the BitStream Object
+// Post: sizeHuffman = numBytes
+//       biSequence = sequence
+//       this->FC = FC
 void BitStream::setData(int numBytes, string sequence, FrequencyCounter FC)
 {
     sizeHuffman = numBytes;
@@ -49,6 +54,9 @@ void BitStream::setData(int numBytes, string sequence, FrequencyCounter FC)
 
 } // setData(int, string)
 
+
+// Desc: Saves the data into the output file given the input stream
+// Pre:  Output stream must be open before calling save
 void BitStream::save(ofstream& of)
 {
     // Write number of bytes for the huffman tree
@@ -99,6 +107,9 @@ void BitStream::save(ofstream& of)
 
 } // save(ofstream)
 
+
+// Desc: Opens the file stream and writes to fileName
+//       Closes the stream after it is done writing.
 void BitStream::writeData(string fileName)
 {
     ofstream fs;
@@ -116,6 +127,8 @@ void BitStream::writeData(string fileName)
 
 }// writeData(string)
 
+// Desc: Extracts data from a file
+// Post: sizeHuffman, biSequence, and FC have their fields filled with data
 void BitStream::readData(string fileName)
 {
     ifstream binaryFile;
@@ -164,4 +177,5 @@ void BitStream::readData(string fileName)
     }
 
     binaryFile.close();
+    
 } // readData(string)
