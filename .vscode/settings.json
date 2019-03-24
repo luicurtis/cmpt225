@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "cstddef": "cpp"
+        "cstddef": "cpp",
+        "bitset": "cpp",
+        "ios": "cpp",
+        "locale": "cpp",
+        "string": "cpp",
+        "iosfwd": "cpp"
     }
 }

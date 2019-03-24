@@ -1,0 +1,45 @@
+Building Tree:
+- use a priority queue to have the lowest weights in front
+- https://www.dreamincode.net/forums/blog/324/entry-3150-an-in-depth-look-at-huffman-encoding/
+	- answer key lul
+Frequency Table:
+- https://stackoverflow.com/questions/27727348/frequency-table-in-c
+- https://stackoverflow.com/questions/29974332/read-through-chars-in-a-file-and-count-how-many-individual-letters-there-are-c
+
+Using the application:
+- need to utilize reading command line arguments
+	- https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/
+
+Input/output streams
+- http://www.cplusplus.com/doc/tutorial/files/
+- http://www.cplusplus.com/reference/fstream/ifstream/
+- https://stackoverflow.com/questions/15736071/file-reading-class-c
+- https://stackoverflow.com/questions/22390641/read-file-by-bits-c
+	- char is 8 bits
+	- for loop starts at 7
+	- every loop it's going to shift right i bits and bitwise AND with that bit
+- https://www.youtube.com/watch?v=z2Q1cvotLCk
+	- REALLY GOOD YOUTUBE VID
+- https://stackoverflow.com/questions/8461126/how-to-create-a-byte-out-of-8-bool-values-and-vice-versa
+- http://courses.cs.vt.edu/~cs2604/fall00/binio.html
+- http://www.cplusplus.com/forum/general/21018/
+- https://stackoverflow.com/questions/33457974/outputting-a-binary-string-to-a-binary-file-in-c
+- http://www.eecs.umich.edu/courses/eecs380/HANDOUTS/cppBinaryFileIO-2.html
+- https://ubuntuforums.org/showthread.php?t=827161
+	- reading binary file into integer
+
+Compressed File
+- Needs to contain the # of bytes as the first thing in the file
+	- this number refers to the number of bytes of the huffman tree
+
+
+TODO:
+- Create huffman tree class
+	- storing huffman tree
+		- store the character followed by the frequency of that character
+			- total will be 8 + 8 bits
+				-store frequency as a char
+	- Figure out how to determine huffman code and wreit code to compressed file
+		- 
+	- Rebuilding 
+		- from 
