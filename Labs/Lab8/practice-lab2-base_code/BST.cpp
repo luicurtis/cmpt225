@@ -85,32 +85,70 @@ ostream & operator<<(ostream & os, const BST& rhs) {
 //       list, ending with a newline.
 void BST::top5() const 
 {
+    int counter = 0;
+    // Base case
+    if (root == NULL)
+    {
+        return;
+    }
+    else
+    {
+        highestValue(root->right, counter);
+        if (counter < 5)
+        {
+            cout << " COUNT :"<< counter << endl;
+            cout << root->key << " ";
+            counter++;
+        }
+        highestValue(root->left, counter);
+    }
+    
+} // top5
+
+void BST::highestValue(BTnode *root, int& c) const
+{
     BTnode *nodePtr = root;
     
-    // If BST is a leaf
-    if (nodePtr->left == NULL && nodePtr->right == NULL)
+    // Base case
+    if (c >= 5)
     {
-        cout << nodePtr->key;
+        return;
+    }
+    // If BST is a leaf
+    else if (nodePtr->left == NULL && nodePtr->right == NULL)
+    {
+        cout << nodePtr->key << " ";
+        c++;
     }
     // If BST only has a left subtree
     else if (nodePtr->right == NULL)
     {
-        cout << nodePtr->key;
+        cout << nodePtr->key << " ";
+        c++;
 
         nodePtr = nodePtr->left;
-        BST subTree(nodePtr);
-        subTree.top5();
+        highestValue(nodePtr, c);
         nodePtr = nodePtr->parent;
-        cout << nodePtr->key;
+        
+        if (c >= 5)
+        {
+            return;
+        }
+        else
+        {
+            cout << nodePtr->key << " ";
+            c++;
+        }
+        
     }
     // If BST has a right subtree
     else
     {
         nodePtr = nodePtr->right;
-        BST subTree(nodePtr);
-        subTree.top5();
+        highestValue(nodePtr, c);
         nodePtr = nodePtr->parent;
-        cout << nodePtr->key;
+        cout << nodePtr->key << " ";
+        c++;
     }
 
-} // top5
+}
