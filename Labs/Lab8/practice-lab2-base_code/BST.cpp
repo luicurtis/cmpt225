@@ -85,9 +85,32 @@ ostream & operator<<(ostream & os, const BST& rhs) {
 //       list, ending with a newline.
 void BST::top5() const 
 {
+    BTnode *nodePtr = root;
     
+    // If BST is a leaf
+    if (nodePtr->left == NULL && nodePtr->right == NULL)
+    {
+        cout << nodePtr->key;
+    }
+    // If BST only has a left subtree
+    else if (nodePtr->right == NULL)
+    {
+        cout << nodePtr->key;
 
+        nodePtr = nodePtr->left;
+        BST subTree(nodePtr);
+        subTree.top5();
+        nodePtr = nodePtr->parent;
+        cout << nodePtr->key;
+    }
+    // If BST has a right subtree
+    else
+    {
+        nodePtr = nodePtr->right;
+        BST subTree(nodePtr);
+        subTree.top5();
+        nodePtr = nodePtr->parent;
+        cout << nodePtr->key;
+    }
 
-
-    cout << endl;
 } // top5
