@@ -15,14 +15,15 @@ using namespace std;
 class Student
 {
   private:
-  string lastName;
-  string firstName;
-  string mailAddress;
-  string email;
-  string phoneNumber;
-  string homeInstitution;
-  string transInstitution;
-  string applyFaculty;
-  string applyProgram;
+    string lastName;
+    string firstName;
+    string mailAddress;
+    string email;
+    string phoneNumber;
+    string homeInstitution;
+    string studentNumhome;
+    string transInstitution;
+    string applyFaculty;
+    string applyProgram;
 
 }; // End of Student
