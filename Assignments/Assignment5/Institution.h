@@ -23,9 +23,10 @@ class Institution
     string regOffEmail;
     string regOffPhonenum;
     
-    Node *transTOptr; // Min Binary Heap tree pointer to root of listing of all students information transferring to this institution,
-    Node *transFROMptr;// // Min Binary Heap tree pointer to root of a listing of all students information transferring from this institution.
-    Node hashTable[MAX_NUM_STUDENTS];
+    AVLNode *TOptr;  // AVL tree pointer to root of listing of all students information transferring to this institution,
+    AVLNode *FROMptr;   // AVL Heap tree pointer to root of a listing of all students information transferring from this institution.
+    AVLNode TOTable[MAX_NUM_STUDENTS];
+    AVLNode FROMTable[MAX_NUM_STUDENTS];
     
     unsigned int numTransIn;
     unsigned int numTransOut;
