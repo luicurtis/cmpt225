@@ -93,24 +93,31 @@ void BST::top5() const
     }
     else
     {
-        highestValue(root->right, counter);
+        if (root->right != NULL)
+        {
+            printHighestVals(root->right, counter);
+        }
         if (counter < 5)
         {
-            cout << " COUNT :"<< counter << endl;
+
             cout << root->key << " ";
             counter++;
         }
-        highestValue(root->left, counter);
+        if (root->left != NULL)
+        {
+            printHighestVals(root->left, counter);
+        }   
     }
-    
+
+    cout << endl;
 } // top5
 
-void BST::highestValue(BTnode *root, int& c) const
+void BST::printHighestVals(BTnode *root, int& c) const
 {
     BTnode *nodePtr = root;
     
-    // Base case
-    if (c >= 5)
+    // Exiting case
+    if (c == 5)
     {
         return;
     }
@@ -127,14 +134,9 @@ void BST::highestValue(BTnode *root, int& c) const
         c++;
 
         nodePtr = nodePtr->left;
-        highestValue(nodePtr, c);
+        printHighestVals(nodePtr, c);
         nodePtr = nodePtr->parent;
-        
-        if (c >= 5)
-        {
-            return;
-        }
-        else
+        if (c < 5)
         {
             cout << nodePtr->key << " ";
             c++;
@@ -145,10 +147,12 @@ void BST::highestValue(BTnode *root, int& c) const
     else
     {
         nodePtr = nodePtr->right;
-        highestValue(nodePtr, c);
+        printHighestVals(nodePtr, c);
         nodePtr = nodePtr->parent;
-        cout << nodePtr->key << " ";
-        c++;
+        if (c < 5)
+        {
+            cout << nodePtr->key << " ";
+            c++;
+        }  
     }
-
 }

@@ -51,6 +51,6 @@ class BST {
         // Post: The BST keys and structure will remain unchanged.
         void top5() const;
 
-        void highestValue(BTnode *root, int& c) const;
+        void printHighestVals(BTnode *root, int& c) const;
 
 };
