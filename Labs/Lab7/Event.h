@@ -1,65 +1,54 @@
 /*
  * Event.h
- *
- * Description: An event-driven simulation
- * Class Invariant: 
- *
- * Author: Curtis Lui
- * Modified: February  11 2019
- *
+ * 
+ * Description: Models arrival or departure event.
+ * 
+ * Class Invariant: Arrival events have type 'A'
+ * 					Departure event have type 'D'
+ * 
+ * Author: AL
+ * Modified: February 2019
  */
 
 #pragma once
+#include <iostream>
 
-// EventType
-typedef enum
-{
-  arrive,
-  depart,
-  none
-} EventType;
+using namespace std;
 
-class Event
-{
-  private:
-    EventType et;
-    int time;
-    int length;
+class Event {
 
-  public:
-    // Description: Default Constructor
-    // Post: Set time and length to 0 and EventType to none
-    Event();
+private:
+	char type;
+	int time;
+	int length; //only used for arrival events
+	
+public:
+	static const char ARRIVAL = 'A';
+	static const char DEPARTURE = 'D';
+	
+	// Constructor
+	Event();
+	Event(char type, int time);
+	Event(char type, int time, int length);
+	
+    // Getters
+    char getType() const;
+    int getTime() const;
+    int getLength() const;
+    
+    // Setters
+    void setType( char aType );
+    void setTime( int aTime );
+    void setLength( int aLength );
+	
+	// Description: Return true if this event is an arrival event, false otherwise.
+	bool isArrival();
 
-    // Description: Constructor
-    // Post: Set time and length to inTime and inLength and EventType to inEt
-    Event(EventType inEt, int inTime, int inLength);
+	// Overloaded Operators
+	// Description: Returns "true" if "this" < "rhs", "false" otherwise.
+	bool operator<=(const Event& rhs);
 
-    // Description: Return the event type
-    int getEvent();
+	// For Testing Purposes
+	friend ostream& operator<<(ostream & os, const Event& rhs);
 
-    // Description: Return the event time
-    int getTime();
-
-    // Description: Return the event length
-    int getLength();
-
-    // Description: Default Constructor
-    // Post: Event type is set to inEvent
-    void setEvent(EventType inEvent);
-
-    // Description: Default Constructor
-    // Post: Event time is set to inTime
-    void setTime(int inTime);
-
-    // Description: Default Constructor
-    // Post: Event length is set to inLength
-    void setLength(int inLength);
-
-    // Description: Less than operator. Compares "this" Event object with "rhs" Event object.
-		//              Returns true if time of "this" Event object is < time of "rhs" Event object.
-    //              If times are the same, return true if EventType of "this" Event object is arrive
-    //              and EventType of "rhs" Event object is depart.
-		bool operator<(const Event &rhs) const;
-
-}; // End of Event
+}; // end of Event.h

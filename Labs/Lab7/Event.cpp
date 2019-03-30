@@ -1,129 +1,106 @@
 /*
  * Event.cpp
  *
- * Description: An event-driven simulation
- * Class Invariant: 
+ * Description: Models arrival or departure event.
  *
- * Author: Curtis Lui
- * Modified: February  11 2019
+ * Class Invariant: Arrival events have type 'A'
+ * 					Departure event have type 'D'
  *
+ * Author: AL
+ * Modified: February 2019
  */
 
+#include <iostream>
 #include "Event.h"
 
-// Description: Default Constructor
-// Post: Set time and length to 0 and EventType to none
-Event::Event() : et(none), time(0), length(0)
-{
+using namespace std;
 
-} // End of Event()
 
-Event::Event(EventType inEt, int inTime, int inLength)
-{
-    et = inEt;
-    time = inTime;
-    length = inLength;
+// Constructor
+Event::Event() {
+	type = ARRIVAL;
+	time = 0;
+	length = 0;
+}
 
-} // End of Event(EventType, int, int)
+Event::Event(char aType, int aTime) {
+	type = aType;
+	time = aTime;
+	length = 0;
+}
 
-// Description: Return the event type
-int Event::getEvent()
-{
-    return et;
+Event::Event(char aType, int aTime, int aLength) {
+	type = aType;
+	time= aTime;
+	length = aLength;
+}
 
-} // End of getEvent()
+// Getters
+char Event::getType() const {
+	return type;
+}
 
-// Description: Return the event time
-int Event::getTime()
-{
-    return time;
+int Event::getTime() const {
+	return time;
+}
 
-} // End of getTime()
+// Postcondition: The length makes sense only when the type is "A".
+int Event::getLength() const {
+	return length;
+}
 
-// Description: Return the event length
-int Event::getLength()
-{
-    return length;
+// Setters
+// Not expected to be used in this simulation
+void Event::setType( char aType ) {
+	type = aType;
+}
 
-} // End of getLength()
+void Event::setTime( int aTime ) {
+	time = aTime;
+}
 
-// Description: Default Constructor
-// Post: Event type is set to inEvent
-void Event::setEvent(EventType inEvent)
-{
-    et = inEvent;
+void Event::setLength( int aLength ) {
+	if( type == ARRIVAL )
+	   length = aLength;
+	else
+	   length = 0;
+}
 
-} // End of setEvent(EventType)
 
-// Description: Default Constructor
-// Post: Event time is set to inTime
-void Event::setTime(int inTime)
-{
-    time = inTime;
+// Description: Return true if this event is an arrival event, false otherwise.
+bool Event::isArrival(){
+	return type == ARRIVAL;
+}
 
-} // End of setTime(int)
+// Overloaded Operators
+// Description: Comparison (equality) operator. Compares "this" Profile object with "rhs" Profile object.
+//              Returns true if both Profile objects have the same name.
+bool Event::operator<=(const Event& rhs) {
 
-// Description: Default Constructor
-// Post: Event length is set to inLengths
-void Event::setLength(int inLength)
-{
-    length = inLength;
+	// Compare both Event objects
+	if (time == rhs.getTime() )
+		if ((type == rhs.getType()) || (type == ARRIVAL && rhs.getType() == DEPARTURE) )
+			return true;
+		else
+			return false;
+	else
+	    if (time < rhs.getTime() )
+			return true;
+		else
+			return false;
 
-} // End of setLength(int)
+	return false;
+} // end of operator<
 
-// Description: Less than operator. Compares "this" Event object with "rhs" Event object.
-//              Returns true if time of "this" Event object is < time of "rhs" Event object.
-//              If times are the same, return true if EventType of "this" Event object is arrive
-//              and EventType of "rhs" Event object is depart.
-bool Event::operator<(const Event &rhs) const
-{
-    // Same EventType
-    if (this->et == rhs.et)
-    {
-        // Same time
-        if (this->time == rhs.time)
-        {
-            return true;
-        }
-        // this->time < rhs.time
-        else if (this->time < rhs.time)
-        {
-            return true;
-        }
-        // this->time > rhs.time
-        else
-        {
-            return false;
-        }
-    }
-    // Different EventType
-    else
-    {
-        // Same time
-        if (this->time == rhs.time)
-        {
-            // Note: et arrive < et depart
-            // this->et == arrive
-            if (this->et == arrive)
-            {
-                return true;
-            }
-            // this->et == depart
-            else
-            {
-                return false;
-            }
-        }
-        // this->time < rhs.time
-        else if (this->time < rhs.time)
-        {
-            return true;
-        }
-        // this->time > rhs.time
-        else
-        {
-            return false;
-        }
-    }
 
-} // End of operator <
+// For Testing Purposes
+ostream& operator<<(ostream & os, const Event& rhs) {
+
+   cout << "Type: " << rhs.type;
+   cout << " Time: " << rhs.time;
+   if ( rhs.type == rhs.ARRIVAL ) cout << " Length: " << rhs.length;
+   cout << endl << endl;
+
+   return os;
+}
+// end of operator <<
