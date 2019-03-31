@@ -1,7 +1,8 @@
 /*
  * Student.h
  *
- * Class Definition: 
+ * Definition:  A student object that contains all relavent information
+ *              related to a student
  *
  * Created on: 	March 2019
  * Author: 		Curtis Lui

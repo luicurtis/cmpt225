@@ -1,7 +1,8 @@
 /*
  * Institution.h
  *
- * Class Definition: 
+ * Definition: An institution object that contains all relavent informatin
+ *             related to the instiution
  *
  * Created on: 	March 2019
  * Author: 		Curtis Lui
@@ -14,7 +15,7 @@
 
 using namespace std;
 
-const int MAX_NUM_STUDENTS = 4000000;
+const int MAX_NUM_STUDENTS = 40000;
 
 class Institution
 {
