@@ -10,6 +10,7 @@
 
 #include <string>
 #include "Student.h"
+#include "Node.h"
 
 using namespace std;
 
@@ -23,10 +24,9 @@ class Institution
     string regOffEmail;
     string regOffPhonenum;
     
-    AVLNode *TOptr;  // AVL tree pointer to root of listing of all students information transferring to this institution,
-    AVLNode *FROMptr;   // AVL Heap tree pointer to root of a listing of all students information transferring from this institution.
-    AVLNode TOTable[MAX_NUM_STUDENTS];
-    AVLNode FROMTable[MAX_NUM_STUDENTS];
+    Node<Student> *TOptr;                           
+    Node<Student> *FROMptr;                         
+    Node<Student> *studentTable[MAX_NUM_STUDENTS]; 
     
     unsigned int numTransIn;
     unsigned int numTransOut;
