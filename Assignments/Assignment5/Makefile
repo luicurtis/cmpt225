@@ -1,5 +1,5 @@
 HashFunction: HashFunction.o
-	g++ -o HashFunction HashFunction.cpp
+	g++ -o hf HashFunction.cpp
 
 clean:
 	rm -f *.o
