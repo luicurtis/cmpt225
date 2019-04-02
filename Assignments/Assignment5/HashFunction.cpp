@@ -45,7 +45,6 @@ int main()
     // Print out hashtable frequency line by line
     for (int i = 0; i < SIZE_HASH_TABLE; i++)
     {
-        //cout << "INDEX " << i << " - " << hashCounter[i] << endl;
         cout << hashCounter[i] << endl;
         if (maxCol < hashCounter[i])
         {
