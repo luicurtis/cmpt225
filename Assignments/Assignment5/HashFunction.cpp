@@ -42,22 +42,25 @@ int main()
 
     int maxCol = hashCounter[0];
     int emptyHashCounter = 0;
-    // Print out hashtable frequency line by line
-    for (int i = 0; i < SIZE_HASH_TABLE; i++)
-    {
-        cout << hashCounter[i] << endl;
-        if (maxCol < hashCounter[i])
-        {
-            maxCol = hashCounter[i];
-        }
-        if (hashCounter[i] == 0)
-        {
-            emptyHashCounter++;
-        }
-    }
 
-    cout << endl << "Max number of collisions: " << maxCol << endl;
-    cout << "Number of empty hashes: " << emptyHashCounter << endl;
+    /* Testing statements */ 
+    
+    // // Print out hashtable frequency line by line
+    // for (int i = 0; i < SIZE_HASH_TABLE; i++)
+    // {
+    //     cout << hashCounter[i] << endl;
+    //     if (maxCol < hashCounter[i])
+    //     {
+    //         maxCol = hashCounter[i];
+    //     }
+    //     if (hashCounter[i] == 0)
+    //     {
+    //         emptyHashCounter++;
+    //     }
+    // }
+
+    // cout << endl << "Max number of collisions: " << maxCol << endl;
+    // cout << "Number of empty hashes: " << emptyHashCounter << endl;
 
     return 0;
 } // main()
